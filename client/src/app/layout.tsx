@@ -4,10 +4,9 @@ import "./globals.css";
 import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
-export const defaultTitle = 'E-Sportech'
 
 export const metadata: Metadata = {
-  title: defaultTitle,
+  title: process.env.TITLE,
 };
 
 export default function RootLayout({

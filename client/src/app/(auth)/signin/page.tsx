@@ -1,10 +1,9 @@
 import FormInput from "@/components/form/FormInput";
 import FormLayouts from "@/components/auth/FormLayouts";
 import { Metadata } from "next";
-import { defaultTitle } from "@/app/layout";
 
 export const metadata: Metadata = {
-    title: `${defaultTitle} - Sign In`,    
+    title: `${process.env.TITLE} - Sign In`,    
 }
 
 export default function SignIn() {
