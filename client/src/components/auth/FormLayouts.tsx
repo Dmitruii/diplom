@@ -13,7 +13,7 @@ const FormLayouts = ({children, type}: IFormLayouts) => {
     const isSignIn = type === 'signin'
     const typeLabel = isSignIn ? 'Sign in' : 'Sign up'
 
-    return <div className="gap-8 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    return <div className="w-1/2 gap-8 flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
     <Logo />
 
     <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">

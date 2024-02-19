@@ -1,9 +1,11 @@
 "use client"
 import { Sidebar } from 'flowbite-react';
 import { Dispatch, SetStateAction } from 'react';
-import { HiChartPie, HiInbox, HiShoppingBag, HiUser } from 'react-icons/hi';
-import { HiMenu } from "react-icons/hi";
+import { GiConsoleController } from "react-icons/gi";
 import BurgerSidebarButton from './BurgerSidebarButton';
+import { HiLocationMarker, HiOutlineUserGroup, HiOutlineMail } from "react-icons/hi";
+
+import SidebarLink from './SidebarLink';
 
 interface ISidebarComp {
   isOpen: boolean
@@ -12,17 +14,40 @@ interface ISidebarComp {
 
 const SidebarComp = ({isOpen, setIsOpen}: ISidebarComp) => {
     return <>
-    <Sidebar className={`z-[2] top-0 bottom-0 left-0 right-0 absolute duration-200 ${!isOpen && '-translate-x-[100%]'}`} aria-label="Sidebar">
+    <Sidebar className={`z-[4] top-0 bottom-0 left-0 right-0 absolute duration-200 ${!isOpen && '-translate-x-[100%]'}`} aria-label="Sidebar">
       <div className='mb-5 px-2 flex justify-between items-center'>
         <BurgerSidebarButton setIsOpen={setIsOpen} />
         <Sidebar.Logo className='mb-0' href="#" img="/logo.svg" imgAlt="Logo">
           E-Sportech
         </Sidebar.Logo>
       </div>
-      <Sidebar.Items>
+      <div className="" data-testid="flowbite-sidebar-items">
+        <ul data-testid="flowbite-sidebar-item-group" className="mt-4 space-y-2 border-t border-gray-200 pt-4 first:mt-0 first:border-t-0 first:pt-0 dark:border-gray-700">
+          <SidebarLink 
+            icon={<GiConsoleController />}
+            href='/players'
+            title='players'
+          />
+          <SidebarLink 
+            icon={<HiOutlineUserGroup />}
+            href='/games'
+            title='games'
+          />
+          <SidebarLink 
+            icon={<HiLocationMarker />}
+            href='#'
+            title='location'
+          />
+          <SidebarLink 
+            icon={<HiOutlineMail />}
+            href='#'
+            title='notifications'
+          />
+        </ul>
+        </div>
+      {/* <Sidebar.Items>
         <Sidebar.ItemGroup>
-          <Sidebar.Item href="#" icon={HiChartPie}>
-            Players
+          <Sidebar.Item href='/players' icon={HiChartPie}>
           </Sidebar.Item>
           <Sidebar.Item href="#" icon={HiInbox}>
             Games
@@ -34,11 +59,11 @@ const SidebarComp = ({isOpen, setIsOpen}: ISidebarComp) => {
             Notifications
           </Sidebar.Item>
         </Sidebar.ItemGroup>
-      </Sidebar.Items>
+      </Sidebar.Items> */}
     </Sidebar>
 
     <div onClick={() => setIsOpen(prev => !prev)}
-      className={`top-0 bottom-0 left-0 right-0 absolute bg-gray-600 duration-200 ${!isOpen ? 'opacity-0 overflow-hidden invisible' : 'opacity-50'}`}></div>
+      className={`z-[3] top-0 bottom-0 left-0 right-0 absolute bg-gray-600 duration-200 ${!isOpen ? 'opacity-0 overflow-hidden invisible' : 'opacity-50'}`}></div>
   </>
 }
 
