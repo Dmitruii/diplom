@@ -1,7 +1,7 @@
 "use client"
 
 import NavbarComp from "@/components/common/Navbar"
-import SidebarComp from "@/components/common/Sidebar"
+import { SidebarComp } from "@/components/common/Sidebar"
 import { useState } from "react"
 
 export default function DashboardLayout({
