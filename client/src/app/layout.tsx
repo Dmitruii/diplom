@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
+import StoreProvider from "@/components/layouts/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,11 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/google.svg" />
       </Head> 
-      <body className={inter.className + ' h-screen flex flex-col'}>{children}</body>
+      <body className={inter.className + ' h-screen flex flex-col'}>
+        <StoreProvider>
+          {children}
+        </StoreProvider>
+      </body>
     </html>
   );
 }
