@@ -4,6 +4,7 @@ import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import Logo from './Logo';
 import { Dispatch, SetStateAction } from 'react';
 import BurgerSidebarButton from './BurgerSidebarButton';
+import Link from 'next/link';
 
 interface INavbarComp {
   setIsOpen: Dispatch<SetStateAction<boolean>>
@@ -29,7 +30,11 @@ const NavbarComp = ({setIsOpen}: INavbarComp) => {
             <span className="block text-sm">Stan Wile</span>
             <span className="block truncate text-sm font-medium">example@lol.com</span>
           </Dropdown.Header>
-          <Dropdown.Item>Edit Profile</Dropdown.Item>
+          <Dropdown.Item>
+            <Link href='/profile/edit'>
+              Edit Profile
+            </Link>
+          </Dropdown.Item>
           <Dropdown.Item>Statistics</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Divider />
@@ -37,15 +42,6 @@ const NavbarComp = ({setIsOpen}: INavbarComp) => {
         </Dropdown>
         <Navbar.Toggle />
       </div>
-      {/* <Navbar.Collapse>
-        <Navbar.Link href="#" active>
-          Home
-        </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
-        <Navbar.Link href="#">Services</Navbar.Link>
-        <Navbar.Link href="#">Pricing</Navbar.Link>
-        <Navbar.Link href="#">Contact</Navbar.Link>
-      </Navbar.Collapse> */}
     </Navbar>
   );
 }

@@ -2,9 +2,10 @@
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { closeModal, resetState } from '@/store/slice/GameSlice';
-import { Button, Modal } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 import { useRouter } from 'next/navigation'
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
+import ModalLayout from '../layouts/ModalLayout';
 
 const GameCancelModal = () => {
     const router = useRouter()
@@ -12,9 +13,10 @@ const GameCancelModal = () => {
     const isModalOpen = useAppSelector((state) => state.game.isModalOpen);
 
     return (
-        <Modal show={isModalOpen} size="md" onClose={() => dispatch(closeModal())} popup>
-            <Modal.Header />
-            <Modal.Body>
+        <ModalLayout
+            isModalOpen={isModalOpen}
+            onClose={() => dispatch(closeModal())}        
+        >
             <div className="text-center">
                 <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
                 <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
@@ -25,15 +27,14 @@ const GameCancelModal = () => {
                     dispatch(resetState())
                     router.push('/dashboard')
                 }}>
-                    {"Yes, I'm sure"}
+                    Yes, I&apos;m sure
                 </Button>
                 <Button color="gray" onClick={() => dispatch(closeModal())}>
                     No, cancel
                 </Button>
                 </div>
             </div>
-            </Modal.Body>
-        </Modal>
+        </ModalLayout>
   );
 }
 

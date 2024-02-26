@@ -3,12 +3,12 @@ import { useId } from "react"
 
 interface IFormInputProps {
     label: string
-    type: string
+    type?: string
     placeholder: string
     required: boolean
 }
 
-export default function FormInput ({ label, type, placeholder, required }: IFormInputProps) {
+export default function FormInput ({ label, type = 'text', placeholder, required }: IFormInputProps) {
     const id = useId()
     return <div>
         <div className="mb-2 block">

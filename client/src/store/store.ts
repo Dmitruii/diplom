@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { gameReducer } from './slice/GameSlice'
+import { EditProfileReducer } from './slice/EditProfileSlice'
 
 export const makeStore = () => {
     return configureStore({
-        reducer: { game: gameReducer },
+        reducer: {
+            game: gameReducer,
+            edit: EditProfileReducer
+        },
     })
 }
 

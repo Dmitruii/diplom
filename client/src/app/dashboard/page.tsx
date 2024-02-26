@@ -1,3 +1,5 @@
+'use client'
+
 import { StartNewGame } from "@/components/common/Sidebar"
 import DashboardLayout from "@/components/layouts/DashboardLayout"
 

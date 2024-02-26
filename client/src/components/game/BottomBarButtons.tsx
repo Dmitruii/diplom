@@ -1,7 +1,6 @@
 import { useAppDispatch } from "@/store/hooks";
 import { nextStep, openModal, previousStep } from "@/store/slice/GameSlice";
 import { Button } from "flowbite-react"
-import Link from "next/link"
 
 const BottomBarButtons = () => {
     const dispatch = useAppDispatch();
@@ -13,7 +12,6 @@ const BottomBarButtons = () => {
                 onClick={() => dispatch(openModal())}
             >
                 Canel
-                {/* <Link href='/dashboard'>Canel</Link> */}
             </Button>
             <Button 
                 color="light"
