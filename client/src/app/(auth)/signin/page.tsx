@@ -13,13 +13,13 @@ export default function SignIn() {
         <>
             <FormInput 
                 label="Your email"
-                type="email"
+                fieldType="email"
                 placeholder="example@gmail.com"
                 required
             />
             <FormInput 
                 label="Password"
-                type="password"
+                fieldType="password"
                 placeholder="••••••••"
                 required
             />

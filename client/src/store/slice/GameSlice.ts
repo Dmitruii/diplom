@@ -1,14 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { redirect } from "next/navigation";
+import { IGame } from "@/lib/types";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface IGameState {
     activeStep: number,
     isModalOpen: boolean
+    game: IGame
 }
 
 const initialState: IGameState = {
-    activeStep: 0,
+    activeStep: 1,
     isModalOpen: false,
+    game: {
+        game: '',
+        gameTitle: '',
+        teams: []
+    }
 };
 
 export const gameSlice = createSlice({
@@ -27,9 +33,19 @@ export const gameSlice = createSlice({
         closeModal: (state) => {
             state.isModalOpen = false;
         },
+        setGame: (state, payload: PayloadAction<any>) => {
+            gameSlice.caseReducers.nextStep(state)
+            state.game = { ...state.game, ...payload.payload };
+        },
+        addTeam: (state, payload: PayloadAction<any>) => {
+            state.game = { ...state.game, teams: [...state.game.teams, payload.payload.gameName] };
+        },
+        removeTeam: (state, payload: PayloadAction<any>) => {
+            state.game = { ...state.game, teams: [...state.game.teams.filter(team => team !== payload.payload)] };
+        },
         resetState: () => initialState
     },
 });
 
-export const { nextStep, previousStep, openModal, closeModal, resetState } = gameSlice.actions;
+export const { nextStep, previousStep, openModal, closeModal, resetState, setGame, addTeam, removeTeam } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

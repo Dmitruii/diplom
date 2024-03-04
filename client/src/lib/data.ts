@@ -1,5 +1,10 @@
 import { IFilter } from "./types"
 
+export const errorTypes = {
+    required: 'required',
+    repeat: 'repeat',
+}
+
 export const PlayerFilters: IFilter[] = [
     {
         label: 'per page',

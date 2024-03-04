@@ -13,19 +13,19 @@ export default function SignUP() {
       <>
         <FormInput 
           label="Nickname"
-          type="nickname"
+          fieldType="nickname"
           placeholder="example@gmail.com"
           required
         />
         <FormInput 
           label="Your email"
-          type="email"
+          fieldType="email"
           placeholder="example@gmail.com"
           required
         />
         <FormInput 
           label="Password"
-          type="password"
+          fieldType="password"
           placeholder="••••••••"
           required
         />

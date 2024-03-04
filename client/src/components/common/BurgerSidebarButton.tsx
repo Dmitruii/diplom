@@ -7,7 +7,7 @@ interface IBurgerSidebarButton {
 
 const BurgerSidebarButton = ({setIsOpen}: IBurgerSidebarButton) => {
     return <div 
-        className=' hover:bg-gray-200 rounded duration-200 cursor-pointer'
+        className='hover:bg-gray-200 rounded duration-200 cursor-pointer'
         onClick={() => setIsOpen(prev => !prev)}
     >
         <HiMenu size={'30'}/>

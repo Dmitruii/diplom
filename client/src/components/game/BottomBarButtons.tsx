@@ -1,8 +1,16 @@
 import { useAppDispatch } from "@/store/hooks";
 import { nextStep, openModal, previousStep } from "@/store/slice/GameSlice";
 import { Button } from "flowbite-react"
+import { SubmitHandler } from "react-hook-form";
+import { Inputs } from "./steps/GameSetup";
 
-const BottomBarButtons = () => {
+interface IBottomBarButtons {
+    onSubmit?: any
+    isValid: boolean
+    isTeam?: boolean
+}
+
+const BottomBarButtons = ({isValid, isTeam, onSubmit}: IBottomBarButtons) => {
     const dispatch = useAppDispatch();
 
     return <div className="w-full flex justify-between">
@@ -18,10 +26,25 @@ const BottomBarButtons = () => {
                 onClick={() => dispatch(previousStep())}
             >Back</Button>
         </div>
-        <Button 
-            color="blue"
-            onClick={() => dispatch(nextStep())}
-        >Next Step</Button>
+
+        <div className="flex gap-2">
+            {isTeam && <Button 
+                onClick={() => {
+                    onSubmit()
+                }}
+                type="submit"
+                color="light"
+            >No Teams (Solo players)</Button>}
+            
+            <Button 
+                onClick={() => {
+                    onSubmit()
+                }}
+                disabled={!isValid}
+                type="submit"
+                color="blue"
+            >Next Step</Button>
+        </div>
     </div>
 }
 

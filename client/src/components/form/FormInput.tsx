@@ -1,19 +1,55 @@
-import { Label, TextInput } from "flowbite-react"
+import { errorTypes } from "@/lib/data"
+import { Label, Select, TextInput } from "flowbite-react"
 import { useId } from "react"
+
+type FormType = 'TextInput' | "Select"
 
 interface IFormInputProps {
     label: string
-    type?: string
+    type?: FormType
+    fieldType?: string
     placeholder: string
-    required: boolean
+    required?: boolean
+    rest?: any;
+    errors?: any
+    value?: string
 }
 
-export default function FormInput ({ label, type = 'text', placeholder, required }: IFormInputProps) {
+export default function FormInput ({ label, type = 'TextInput', fieldType, placeholder, required, rest, errors, value }: IFormInputProps) {
     const id = useId()
-    return <div>
+    const error = value === '' || errors
+
+    return <div className="w-full">
         <div className="mb-2 block">
-            <Label htmlFor={id} value={label} />
+            <Label className={error && "text-red-600"} htmlFor={id} value={label} />
         </div>
-        <TextInput id={id} type={type} placeholder={placeholder} required={required} />
+
+        {type === 'TextInput' && <TextInput 
+            id={id} 
+            type={fieldType} 
+            placeholder={placeholder} 
+            required={required} 
+            color={error && "failure"}
+            {...rest}
+        />}
+
+        {type ==='Select' && <Select 
+            {...rest}
+            id={id} 
+            required={required}
+            color={error && "failure"}
+        >
+            <option value=''>Chose option</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>France</option>
+            <option>Germany</option>
+            <option value='YourGame'>YourGame</option>
+        </Select>}
+
+        {error && <span className="text-red-600 font-semibold">
+            {(errors?.type === errorTypes.required || value === '') && 'Required'}    
+            {(errors?.type === errorTypes.repeat) && `${label} value is taken`}    
+        </span>}
     </div>
 }

@@ -11,3 +11,10 @@ export interface IOption {
     label: string
     value: any
 }
+
+export interface IGame {
+    game: string
+    gameTitle: string
+    yourGame?: string
+    teams: string[]
+}
