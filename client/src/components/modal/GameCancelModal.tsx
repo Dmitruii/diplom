@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { closeModal, resetState } from '@/store/slice/GameSlice';
+import { closeCancelModal, resetState } from '@/store/slice/GameSlice';
 import { Button } from 'flowbite-react';
 import { useRouter } from 'next/navigation'
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
@@ -15,7 +15,7 @@ const GameCancelModal = () => {
     return (
         <ModalLayout
             isModalOpen={isModalOpen}
-            onClose={() => dispatch(closeModal())}        
+            onClose={() => dispatch(closeCancelModal())}        
         >
             <div className="text-center">
                 <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
@@ -29,7 +29,7 @@ const GameCancelModal = () => {
                 }}>
                     Yes, I&apos;m sure
                 </Button>
-                <Button color="gray" onClick={() => dispatch(closeModal())}>
+                <Button color="gray" onClick={() => dispatch(closeCancelModal())}>
                     No, cancel
                 </Button>
                 </div>

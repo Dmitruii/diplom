@@ -1,23 +1,22 @@
-import { useAppDispatch } from "@/store/hooks";
-import { nextStep, openModal, previousStep } from "@/store/slice/GameSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { isSolo, nextStep, openCancelModal, previousStep } from "@/store/slice/GameSlice";
 import { Button } from "flowbite-react"
-import { SubmitHandler } from "react-hook-form";
-import { Inputs } from "./steps/GameSetup";
 
 interface IBottomBarButtons {
-    onSubmit?: any
     isValid: boolean
     isTeam?: boolean
+    onClickNextStep?: any
 }
 
-const BottomBarButtons = ({isValid, isTeam, onSubmit}: IBottomBarButtons) => {
+const BottomBarButtons = ({isValid, isTeam, onClickNextStep}: IBottomBarButtons) => {
     const dispatch = useAppDispatch();
+    const teams = useAppSelector((state) => state.game.game.teams)
 
     return <div className="w-full flex justify-between">
         <div className="flex gap-2">
             <Button 
                 color="failure"
-                onClick={() => dispatch(openModal())}
+                onClick={() => dispatch(openCancelModal())}
             >
                 Canel
             </Button>
@@ -30,15 +29,18 @@ const BottomBarButtons = ({isValid, isTeam, onSubmit}: IBottomBarButtons) => {
         <div className="flex gap-2">
             {isTeam && <Button 
                 onClick={() => {
-                    onSubmit()
+                    dispatch(isSolo())
+                    dispatch(nextStep())
                 }}
+                disabled={!!teams.length}
                 type="submit"
                 color="light"
             >No Teams (Solo players)</Button>}
             
             <Button 
                 onClick={() => {
-                    onSubmit()
+                    onClickNextStep && onClickNextStep()
+                    dispatch(nextStep())
                 }}
                 disabled={!isValid}
                 type="submit"

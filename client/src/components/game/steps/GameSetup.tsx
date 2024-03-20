@@ -1,8 +1,9 @@
 import FormInput from "@/components/form/FormInput"
 import BottomBarButtons from "../BottomBarButtons"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { setGame } from "@/store/slice/GameSlice"
+import { nextStep, setGame } from "@/store/slice/GameSlice"
 import { useAppDispatch } from "@/store/hooks"
+import { gamesOptions } from "@/lib/data"
 
 export type Inputs = {
     gameTitle: string
@@ -13,19 +14,15 @@ export type Inputs = {
 const GameSetup = () => {
     const {
         register,
-        handleSubmit,
         watch,
         formState: { errors, isValid },
+        getValues
     } = useForm<Inputs>()
     const dispatch = useAppDispatch()
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        dispatch(setGame(data))
-    }
-
     const gameSelectValue = watch('game')
 
-    return <form onSubmit={handleSubmit(onSubmit)} className="h-full flex flex-col justify-between w-full items-center">
+    return <form className="my-10 h-full flex flex-col justify-between w-full items-center">
         <div className="w-full h-full flex justify-center items-center">
             <div className="flex flex-col gap-10 w-1/3">
                 <FormInput 
@@ -40,7 +37,7 @@ const GameSetup = () => {
                     label="Game" 
                     placeholder="CS:GO" 
                     type="Select"
-                    value={gameSelectValue}
+                    options={gamesOptions}
                 />
                 
                 {gameSelectValue === 'YourGame' && <FormInput 
@@ -52,7 +49,8 @@ const GameSetup = () => {
             </div>
         </div>
 
-        <BottomBarButtons 
+        <BottomBarButtons
+            onClickNextStep={() => dispatch(setGame(getValues()))}
             isValid={isValid}
         />
     </form>

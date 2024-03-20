@@ -2,6 +2,7 @@
 import AddPlayers from "@/components/game/steps/AddPlayers"
 import CreateTeam from "@/components/game/steps/CreateTeam"
 import FirstTour from "@/components/game/steps/FirstTour"
+import GameReview from "@/components/game/steps/GameReview"
 import GameSetup from "@/components/game/steps/GameSetup"
 import LocationStep from "@/components/game/steps/Location"
 import NewGameLayout from "@/components/layouts/NewGameLayout"
@@ -18,6 +19,7 @@ const New = () => {
             case 2: return <AddPlayers/>;
             case 3: return <LocationStep/>;
             case 4: return <FirstTour/>;
+            case 5: return <GameReview/>;
             default: return null;
         }
       }

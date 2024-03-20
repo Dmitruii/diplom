@@ -1,9 +1,8 @@
-import { BaseSyntheticEvent } from "react"
 import BottomBarButtons from "../BottomBarButtons"
 import FormInput from "@/components/form/FormInput"
 import { Button } from "flowbite-react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { addTeam, nextStep } from "@/store/slice/GameSlice"
+import { addTeam } from "@/store/slice/GameSlice"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import TeamList from "./team/TeamList"
 
@@ -25,7 +24,7 @@ const CreateTeam = () => {
         let errorSet = false; 
 
         for (let i = 0; i < teams.length; i++) {
-            if (teams[i] === data.gameName) {
+            if (teams[i].name === data.gameName) {
                 setError('gameName', { type: 'repeat' })
                 errorSet = true;
                 break
@@ -33,7 +32,7 @@ const CreateTeam = () => {
         }
 
         if (!errorSet) {
-            dispatch(addTeam(data));
+            dispatch(addTeam({ name: data.gameName, players: []}));
         }
     }
     
@@ -64,8 +63,7 @@ const CreateTeam = () => {
 
         <BottomBarButtons 
             isTeam
-            onSubmit={() => dispatch(nextStep())}
-            isValid={!!teams.length}        
+            isValid={teams.length >= 2}      
         />
     </div>
 }

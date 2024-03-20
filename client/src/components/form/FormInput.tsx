@@ -1,4 +1,5 @@
 import { errorTypes } from "@/lib/data"
+import { ISelectOption } from "@/lib/types"
 import { Label, Select, TextInput } from "flowbite-react"
 import { useId } from "react"
 
@@ -13,9 +14,10 @@ interface IFormInputProps {
     rest?: any;
     errors?: any
     value?: string
+    options?: ISelectOption[]
 }
 
-export default function FormInput ({ label, type = 'TextInput', fieldType, placeholder, required, rest, errors, value }: IFormInputProps) {
+export default function FormInput ({ label, type = 'TextInput', fieldType, placeholder, required, rest, errors, value, options }: IFormInputProps) {
     const id = useId()
     const error = value === '' || errors
 
@@ -39,12 +41,14 @@ export default function FormInput ({ label, type = 'TextInput', fieldType, place
             required={required}
             color={error && "failure"}
         >
-            <option value=''>Chose option</option>
-            <option>United States</option>
-            <option>Canada</option>
-            <option>France</option>
-            <option>Germany</option>
-            <option value='YourGame'>YourGame</option>
+            {options?.map(({label, value}) => {
+                return <option 
+                    key={value}
+                    value={typeof value === 'object' ? JSON.stringify(value) : value}
+                >
+                {label}
+            </option>
+            })}
         </Select>}
 
         {error && <span className="text-red-600 font-semibold">
