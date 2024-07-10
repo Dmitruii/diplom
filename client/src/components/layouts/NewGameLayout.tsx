@@ -7,7 +7,7 @@ interface INewGameLayout {
 const NewGameLayout = ({
     children,
 }: INewGameLayout) => {
-    return <div className="flex flex-col justify-between items-center h-full mx-auto container py-5">
+    return <div className="py-5 h-full flex flex-col justify-between items-center mx-auto container">
         <Stepper />
         {children}
     </div>

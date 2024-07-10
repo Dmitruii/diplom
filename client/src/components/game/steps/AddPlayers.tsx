@@ -43,7 +43,7 @@ const AddPlayers = () => {
         dispatch(setGroups(Groups))
     }, [])
 
-    return <div className="my-10 h-full flex flex-col justify-between items-center w-full">
+    return <div className="h-full flex flex-col justify-between items-center w-full">
         <div className="gap-10 w-full h-full flex items-center justify-center">
             <form 
                 onSubmit={handleSubmit(onSubmit)} 

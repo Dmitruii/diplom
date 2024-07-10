@@ -26,7 +26,9 @@ const New = () => {
 
     return <NewGameLayout>
         <>
-            {getSectionComponent()}
+            <div className="h-full w-full overflow-scroll">
+                {getSectionComponent()}
+            </div>
             <GameCancelModal />
         </>
     </NewGameLayout>
