@@ -13,6 +13,7 @@ export const entities: any = {
   groups: "groups",
   teams: "teams",
   tournaments: "tournaments",
+  locations: "locations",
 };
 
 export const teamSize = [2, 4, 8, 16, 32, 64, 128, 256];

@@ -10,7 +10,7 @@ import client from "@/directus/api";
 import { entities } from "@/lib/data";
 import { getUpdatedMatches } from "@/utils/getUpdatedMatches";
 import { setIsLoading, setToast } from "@/store/slice/GlobalModalsSlice";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const GameReview = () => {
   const router = useRouter();
@@ -20,10 +20,13 @@ const GameReview = () => {
   const isSolo = useAppSelector((state) => state.game.isSolo);
   const brackets = useAppSelector((state) => state.game.brackets);
   const teams = useAppSelector((state) => state.game.game.teams);
+  const location = useAppSelector((state) => state.game.game.location);
 
   const participants = game2.brackets
     .map((bracket) => bracket.participants)
     .flat();
+
+  console.log(location);
 
   const createTournament = async () => {
     dispatch(setIsLoading(true));
@@ -33,6 +36,7 @@ const GameReview = () => {
           admin_id: "8afdd44b-8669-40d9-8061-1c2cca4a3fc4",
           games_id: game.game?.value,
           name: game.gameTitle,
+          location: location?.value,
         })
       );
       if (isSolo) {
@@ -150,6 +154,7 @@ const GameReview = () => {
           Tournament title: {game.gameTitle}
         </h1>
         <h1 className="text-xl font-semibold ">Game: {game.game?.label}</h1>
+        <h1 className="text-xl font-semibold ">Location: {location?.label}</h1>
         <div>
           <h1 className="mb-2 text-xl font-semibold">Particapants</h1>
           <ul>

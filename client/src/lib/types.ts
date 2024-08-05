@@ -27,6 +27,7 @@ export interface IGame {
   activePlayersOptions: IOption[];
   playersOptions: IOption[];
   teamOptions: IOption[];
+  location: IOption | null;
 }
 
 export interface IGameTeam {

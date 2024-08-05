@@ -26,7 +26,7 @@ export interface IGameState {
 }
 
 const initialState: IGameState = {
-  activeStep: 5,
+  activeStep: 0,
   isModalOpen: false,
   isSolo: false,
   game: {
@@ -76,6 +76,7 @@ const initialState: IGameState = {
     teamOptions: [],
     activePlayersOptions: [],
     playersOptions: [],
+    location: null,
   },
   groups: [],
   brackets: [
@@ -426,14 +427,9 @@ export const gameSlice = createSlice({
     ) => {
       state.game.playersOptions = payload.options;
     },
-    addPlayersOptions: (
-      state,
-      {
-        payload,
-      }: PayloadAction<{
-        playerId: string;
-      }>
-    ) => {},
+    setLocation: (state, { payload }: PayloadAction<IOption>) => {
+      state.game.location = payload;
+    },
   },
 });
 
@@ -456,7 +452,7 @@ export const {
   removeOptionsSoloPlayers,
   addOptionsSoloPlayers,
   setActivePlayersOptions,
-  addPlayersOptions,
   setPlayersOptions,
+  setLocation,
 } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;
