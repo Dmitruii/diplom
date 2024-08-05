@@ -4,8 +4,6 @@ import createMatch from "./createMatch";
 const tournaments = (matches: ITournamentMatch[]) => {
   const tournamentMatches: any[] = [];
 
-  console.log(matches);
-
   matches.forEach(
     ({
       id,

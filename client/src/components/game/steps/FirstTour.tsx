@@ -2,79 +2,71 @@
 
 import BottomBarButtons from "../BottomBarButtons";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { useEffect, useId, useLayoutEffect, useState } from "react";
-import { createFirstTour } from "@/store/slice/GameSlice";
-import CustomSeed from "./bracket/Seed";
+import { useEffect } from "react";
+import { SingleEliminationBracket } from "@g-loot/react-tournament-brackets";
 import {
-  SingleEliminationBracket,
-  Match,
-} from "@g-loot/react-tournament-brackets";
-import client from "@/directus/api";
-import { readItems } from "@directus/sdk";
-import tournaments from "@/utils/tournaments";
-import { WhiteTheme } from "@/lib/data";
+  createTournamentBracketsSolo,
+  createTournamentBracketsTeam,
+} from "@/utils/createTournamentBrackets";
+import {
+  isSolo,
+  setBrackets,
+  setOptionsSoloPlayers,
+} from "@/store/slice/GameSlice";
+import { Match as IMatch } from "@g-loot/react-tournament-brackets/dist/src/types";
+import Match from "./bracket/Match";
 
 const FirstTour = () => {
   const dispatch = useAppDispatch();
-  const round = useAppSelector((state) => state.game.tour.round);
-  const items: any = "matches";
-  const [simpleSmallBracket, setSimpleSmallBracket] = useState<any>([]);
+  const soloPLayers = useAppSelector((state) => state.game.game.soloPLayers);
+  const game = useAppSelector((state) => state.game.game);
+  const isSolo = useAppSelector((state) => state.game.isSolo);
+  const optionsSoloPlayers = useAppSelector(
+    (state) => state.game.game.optionsSoloPlayers
+  );
+  const brackets = useAppSelector((state) => state.game.brackets);
+  const newBrakets = JSON.parse(JSON.stringify(brackets));
 
   const fetchMatches = async () => {
-    const matches: any = await client.request(
-      readItems(items, {
-        fields: [
-          "*",
-          { contestant2_user_id: ["id", "first_name"] },
-          { contestant1_user_id: ["id", "first_name"] },
-        ],
-      })
-    );
-    setSimpleSmallBracket(tournaments(matches));
+    // const matches: any = await client.request(
+    //   readItems(entities.matches, {
+    //     fields: [
+    //       "*",
+    //       { contestant2_user_id: ["id", "first_name"] },
+    //       { contestant1_user_id: ["id", "first_name"] },
+    //     ],
+    //   })
+    // );
+    // setSimpleSmallBracket(tournaments(matches));
+  };
+
+  const setBrakets = () => {
+    let brackets: any = [];
+    if (isSolo) {
+      brackets = createTournamentBracketsSolo(soloPLayers);
+    } else {
+      brackets = createTournamentBracketsTeam(game);
+    }
+    dispatch(setBrackets(brackets));
   };
 
   useEffect(() => {
-    fetchMatches();
+    dispatch(setOptionsSoloPlayers());
+    setBrakets();
   }, []);
-
-  // useLayoutEffect(() => {
-  //   dispatch(createFirstTour({
-  //     round: {
-  //       matchId: Pick<IMatch, 'matchId'>
-  //       title: string
-  //     },
-  //     match: {}
-  //   }))·
-  // }, [])
-
-  // Run the tournament and log the results
-  // [...(round[0]?.matchs)].map(match => ({...match, players}))
-
-  console.log(simpleSmallBracket);
 
   return (
     <div className="min-h-full gap-5 flex flex-col justify-between items-center w-full">
       <div className="w-full overflow-scroll flex items-center justify-center">
-        {simpleSmallBracket.length && (
+        {newBrakets.length > 0 && (
           <SingleEliminationBracket
-            matches={simpleSmallBracket}
+            matches={newBrakets as IMatch[]}
             matchComponent={Match}
-            theme={WhiteTheme}
-            options={{
-              style: {
-                roundHeader: {
-                  backgroundColor: WhiteTheme.roundHeader.backgroundColor,
-                  fontColor: WhiteTheme.roundHeader.fontColor,
-                },
-                connectorColor: WhiteTheme.connectorColor,
-                connectorColorHighlight: WhiteTheme.connectorColorHighlight,
-              },
-            }}
           />
         )}
       </div>
 
-      <BottomBarButtons isValid={true} />
+      <BottomBarButtons isValid={optionsSoloPlayers.length === 1} />
     </div>
   );
 };

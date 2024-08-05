@@ -6,6 +6,17 @@ export const errorTypes = {
   repeat: "repeat",
 };
 
+export const entities: any = {
+  games: "games",
+  matches: "matches",
+  users: "users",
+  groups: "groups",
+  teams: "teams",
+  tournaments: "tournaments",
+};
+
+export const teamSize = [2, 4, 8, 16, 32, 64, 128, 256];
+
 export const PlayerFilters: IFilter[] = [
   {
     label: "per page",

@@ -14,20 +14,25 @@ export interface IOption {
 
 export interface IGamePLayer {
   name: string;
-  id?: number;
+  id?: string;
 }
 
 export interface IGame {
-  game: string;
+  game: IOption | null;
   gameTitle: string;
   yourGame?: string;
   teams: IGameTeam[];
-  soloPLayers: IGamePLayer[];
+  soloPLayers: IOption[];
+  optionsSoloPlayers: IOption[];
+  activePlayersOptions: IOption[];
+  playersOptions: IOption[];
+  teamOptions: IOption[];
 }
 
 export interface IGameTeam {
+  id: string;
   name: string;
-  players: IGamePLayer[];
+  players: IOption[];
 }
 
 export interface ISelectOption {
@@ -43,12 +48,6 @@ export interface IGroup {
 export interface IFirstRound {
   title: string;
   seeds: any[];
-}
-
-// Tour
-export interface ITour {
-  round: IRound;
-  matches: IMatch[];
 }
 
 export interface IRound {
@@ -77,4 +76,25 @@ export interface ITournamentMatch {
   round_num: number;
   tournament_id: number;
   winner_user_id: number;
+}
+
+export interface IBrackets {
+  id: string | number;
+  nextMatchId: number | null;
+  participants: IParticipant[];
+  tournamentRoundText: string;
+}
+
+export interface IParticipant {
+  id: string | number;
+  resultText: "Lose" | "Win";
+  isWinner: boolean;
+  name: string;
+}
+
+export type IToastModalTypes = "success" | "warning" | "error" | null;
+
+export interface IToast {
+  label: string;
+  type: IToastModalTypes;
 }
