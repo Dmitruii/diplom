@@ -430,6 +430,9 @@ export const gameSlice = createSlice({
     setLocation: (state, { payload }: PayloadAction<IOption>) => {
       state.game.location = payload;
     },
+    resetState: (state) => {
+      state = initialState;
+    },
   },
 });
 
@@ -454,5 +457,6 @@ export const {
   setActivePlayersOptions,
   setPlayersOptions,
   setLocation,
+  resetState,
 } = gameSlice.actions;
 export const gameReducer = gameSlice.reducer;

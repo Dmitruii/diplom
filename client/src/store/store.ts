@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { gameReducer } from "./slice/GameSlice";
 import { EditProfileReducer } from "./slice/EditProfileSlice";
 import { GlobalModalsReducer } from "./slice/GlobalModalsSlice";
+import { TournamentSliceReducer } from "./slice/TournamentSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       game: gameReducer,
       edit: EditProfileReducer,
       globalModals: GlobalModalsReducer,
+      tournament: TournamentSliceReducer,
     },
   });
 };

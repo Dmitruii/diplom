@@ -62,21 +62,35 @@ export interface IMatch {
 }
 
 export interface ITournamentMatch {
-  contestant1_score: boolean;
-  contestant1_user_id: {
-    id: number;
-    first_name: string;
-  };
-  contestant2_user_id: {
-    id: number;
-    first_name: string;
-  };
-  contestant2_score: boolean;
+  // contestant1_score: boolean;
+  // collection: {
+  //   collection: string;
+  //   id: number;
+  //   item: string;
+  //   matches_id: number;
+  // }[];
+  // contestant2_score: boolean;
+  // id: number;
+  // next_match_id: number;
+  // round_num: number;
+  // tournament_id: number;
+  // winner_user_id: number;
   id: number;
   next_match_id: number;
   round_num: number;
   tournament_id: number;
-  winner_user_id: number;
+  winner_id: {
+    collection: string;
+    id: number;
+    item: string;
+    matches_id: number;
+  };
+  collection: {
+    collection: string;
+    id: number;
+    item: any;
+    matches_id: any;
+  }[];
 }
 
 export interface IBrackets {
@@ -98,4 +112,19 @@ export type IToastModalTypes = "success" | "warning" | "error" | null;
 export interface IToast {
   label: string;
   type: IToastModalTypes;
+}
+
+export interface ITournament {
+  admin_id: {
+    first_name: string;
+  };
+  date_created: string;
+  games_id: {
+    name: string;
+  };
+  id: number;
+  location: {
+    title: string;
+  };
+  name: string;
 }
