@@ -29,7 +29,13 @@ const Dashboard = () => {
           ],
         },
         sort: ["-date_created"],
-        fields: ["*", "admin_id.first_name", "location.title", "games_id.name"],
+        fields: [
+          "*",
+          "admin_id.first_name",
+          "location.title",
+          "games_id.name",
+          "winner_id.*.*",
+        ],
       })
     );
     setTournaments(data);

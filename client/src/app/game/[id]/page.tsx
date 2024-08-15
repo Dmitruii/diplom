@@ -18,6 +18,20 @@ const Game = ({ params }: { params: { id: string } }) => {
   const matches = useAppSelector((state) => state.tournament.matches);
   const newMatches = JSON.parse(JSON.stringify(matches));
 
+  const isValidFinal = () => {
+    const finalMatch = matches.find((match) => match.nextMatchId === null);
+
+    if (finalMatch) {
+      if (Object.keys(finalMatch.participants[0]).length !== 0) {
+        if (Object.keys(finalMatch.participants[1]).length !== 0) {
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+  const isValid = isValidFinal();
+
   const fetch = async () => {
     const data = await client.request(
       readItems(entities.matches, {
@@ -43,13 +57,22 @@ const Game = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center px-10 py-5">
-      <div className="w-full">
+      <div className="w-full flex justify-between">
         <Button
           className="justify-self-start"
           color="blue"
           onClick={() => router.back()}
         >
           Back
+        </Button>
+
+        <Button
+          disabled={isValid}
+          className="justify-self-start"
+          color="blue"
+          onClick={() => router.push(`${window.location.pathname}/final`)}
+        >
+          Final
         </Button>
       </div>
       {newMatches.length > 0 && (

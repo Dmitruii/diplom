@@ -3,11 +3,15 @@ import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 export interface ITournamentSlice {
   matches: any[];
   playersType: string;
+  isModalOpen: boolean;
+  winner: any;
 }
 
 const initialState: ITournamentSlice = {
   matches: [],
   playersType: "",
+  isModalOpen: false,
+  winner: null,
 };
 
 export const TournamentSlice = createSlice({
@@ -45,8 +49,6 @@ export const TournamentSlice = createSlice({
               } else {
                 return part;
               }
-              console.log(asd);
-              console.log(current(match.participants));
             });
           }
         });
@@ -61,11 +63,23 @@ export const TournamentSlice = createSlice({
       });
     },
     setPlayersType: (state, { payload }: PayloadAction<any>) => {
+      console.log(payload);
       state.playersType = payload[0].collection[0].collection;
+    },
+    setIsModalOpen: (state) => {
+      state.isModalOpen = true;
+    },
+    setWiner: (state, { payload }: PayloadAction<any>) => {
+      state.winner = payload;
     },
   },
 });
 
-export const { setMatches, setPacticapant, setPlayersType } =
-  TournamentSlice.actions;
+export const {
+  setMatches,
+  setPacticapant,
+  setPlayersType,
+  setIsModalOpen,
+  setWiner,
+} = TournamentSlice.actions;
 export const TournamentSliceReducer = TournamentSlice.reducer;
