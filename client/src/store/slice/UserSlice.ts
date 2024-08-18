@@ -3,10 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IUserSlice {
   user: IUser | null;
+  file: File | null;
 }
 
 const initialState: IUserSlice = {
   user: null,
+  file: null,
 };
 
 export const UserSlice = createSlice({
@@ -16,8 +18,15 @@ export const UserSlice = createSlice({
     setUser: (state, { payload }: PayloadAction<IUser>) => {
       state.user = payload;
     },
+    setAvatar: (state, { payload }: PayloadAction<Pick<IUser, "avatar">>) => {
+      state.user = { ...state.user, avatar: payload.avatar };
+    },
+    setFile: (state, { payload }: PayloadAction<Pick<IUserSlice, "file">>) => {
+      console.log(payload.file);
+      state.file = payload.file;
+    },
   },
 });
 
-export const { setUser } = UserSlice.actions;
+export const { setUser, setAvatar, setFile } = UserSlice.actions;
 export const UserReducer = UserSlice.reducer;

@@ -140,7 +140,7 @@ export interface IUser {
   title: string;
   description: string;
   tags: any;
-  avatar: string;
+  avatar: string | null;
   language: string;
   appearance: string;
   tfa_secret: string;
@@ -149,4 +149,5 @@ export interface IUser {
   token: string | null;
   last_access: string;
   last_page: string;
+  group_id: number;
 }

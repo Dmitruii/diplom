@@ -25,8 +25,21 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
   const logout = async () => {
     dispatch(setIsLoading(true));
     await client.logout();
+    dispatch(setUser(null));
     router.push("/signin");
   };
+  const fetchUserData = async () => {
+    const user = await client.request<IUser>(
+      readMe({
+        fields: ["*"],
+      })
+    );
+    dispatch(setUser(user));
+  };
+
+  useEffect(() => {
+    !user && fetchUserData();
+  }, []);
 
   return (
     <Navbar className="bg-gray-50 border-b-2">
@@ -45,7 +58,7 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
               img={
                 user?.avatar
                   ? `${process.env.NEXT_PUBLIC_API_URL}/assets/${user?.avatar}`
-                  : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                  : "/profile.svg"
               }
               rounded
             />
