@@ -2,19 +2,24 @@
 
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Logo from "./Logo";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import BurgerSidebarButton from "./BurgerSidebarButton";
 import Link from "next/link";
 import client from "@/directus/api";
-import { useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setIsLoading } from "@/store/slice/GlobalModalsSlice";
 import { useRouter } from "next/navigation";
+import { readMe, readUser } from "@directus/sdk";
+import { entities } from "@/lib/data";
+import { IUser } from "@/lib/types";
+import { setUser } from "@/store/slice/UserSlice";
 
 interface INavbarComp {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const NavbarComp = ({ setIsOpen }: INavbarComp) => {
+  const user = useAppSelector((state) => state.user.user);
   const router = useRouter();
   const dispatch = useAppDispatch();
   const logout = async () => {
@@ -37,15 +42,19 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
           label={
             <Avatar
               alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              img={
+                user?.avatar
+                  ? `${process.env.NEXT_PUBLIC_API_URL}/assets/${user?.avatar}`
+                  : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              }
               rounded
             />
           }
         >
           <Dropdown.Header>
-            <span className="block text-sm">Stan Wile</span>
+            <span className="block text-sm">{`${user?.first_name} ${user?.last_name}`}</span>
             <span className="block truncate text-sm font-medium">
-              example@lol.com
+              {user?.email}
             </span>
           </Dropdown.Header>
           <Dropdown.Item>

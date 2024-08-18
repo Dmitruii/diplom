@@ -29,6 +29,7 @@ const GameReview = () => {
   const createTournament = async () => {
     dispatch(setIsLoading(true));
     try {
+      console.log(location);
       const tournament = await client.request(
         createItem(entities.tournaments, {
           admin_id: "8afdd44b-8669-40d9-8061-1c2cca4a3fc4",

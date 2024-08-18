@@ -127,4 +127,26 @@ export interface ITournament {
     title: string;
   };
   name: string;
+  winner_id: any;
+}
+
+export interface IUser {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  location: string;
+  title: string;
+  description: string;
+  tags: any;
+  avatar: string;
+  language: string;
+  appearance: string;
+  tfa_secret: string;
+  status: string;
+  role: string;
+  token: string | null;
+  last_access: string;
+  last_page: string;
 }

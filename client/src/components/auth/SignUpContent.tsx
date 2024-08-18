@@ -110,33 +110,24 @@ const SignUpContent = () => {
           placeholder="21OKC2"
           required
         />
-        <Accordion flush alwaysOpen={false}>
-          <Accordion.Panel className="bg-cyan-500 h-10">
-            <Accordion.Title className="text-size-10">
-              Optional fields
-            </Accordion.Title>
-            <Accordion.Content>
-              <FormInput
-                rest={{
-                  ...register("first_name"),
-                }}
-                label="First name"
-                fieldType="text"
-                placeholder="Jesus"
-                required
-              />
-              <FormInput
-                rest={{
-                  ...register("last_name"),
-                }}
-                label="First name"
-                fieldType="text"
-                placeholder="Christ"
-                required
-              />
-            </Accordion.Content>
-          </Accordion.Panel>
-        </Accordion>
+        <FormInput
+          rest={{
+            ...register("first_name", { required: true }),
+          }}
+          label="First name"
+          fieldType="text"
+          placeholder="Jesus"
+          required
+        />
+        <FormInput
+          rest={{
+            ...register("last_name"),
+          }}
+          label="First name"
+          fieldType="text"
+          placeholder="Christ"
+          required
+        />
       </>
     </FormLayouts>
   );

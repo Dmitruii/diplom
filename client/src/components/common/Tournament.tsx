@@ -7,9 +7,18 @@ interface ITournament {
   date: string;
   game: string;
   id: number;
+  winner: any;
 }
 
-const Tournament = ({ id, name, location, admin, date, game }: ITournament) => {
+const Tournament = ({
+  id,
+  name,
+  location,
+  admin,
+  date,
+  game,
+  winner,
+}: ITournament) => {
   const router = useRouter();
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -33,6 +42,7 @@ const Tournament = ({ id, name, location, admin, date, game }: ITournament) => {
           day: "numeric",
         })}
       </div>
+      <div className="flex-1 flex justify-center">{winner || "None"}</div>
     </div>
   );
 };

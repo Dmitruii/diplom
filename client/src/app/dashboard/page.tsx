@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const adminId = "8afdd44b-8669-40d9-8061-1c2cca4a3fc4";
-  const adminId2 = "ee75b112-e665-4a3b-b207-0714daeb488a";
   const dispatch = useAppDispatch();
   const [tournaments, setTournaments] = useState<ITournament[] | null>(null);
 
@@ -68,6 +67,7 @@ const Dashboard = () => {
                   <div className="flex-1 flex justify-center">Admin</div>
                   <div className="flex-1 flex justify-center">Game</div>
                   <div className="flex-1 flex justify-center">Date</div>
+                  <div className="flex-1 flex justify-center">Winner</div>
                 </div>
               )}
               <div className="flex flex-col gap-2">
@@ -79,17 +79,24 @@ const Dashboard = () => {
                     admin_id,
                     date_created,
                     games_id,
-                  }) => (
-                    <Tournament
-                      id={id}
-                      key={id}
-                      name={name}
-                      location={location.title}
-                      admin={admin_id.first_name}
-                      date={date_created}
-                      game={games_id.name}
-                    />
-                  )
+                    winner_id,
+                  }) => {
+                    return (
+                      <Tournament
+                        id={id}
+                        key={id}
+                        name={name}
+                        location={location.title}
+                        admin={admin_id.first_name}
+                        date={date_created}
+                        game={games_id.name}
+                        winner={
+                          winner_id?.[0]?.item.first_name ||
+                          winner_id?.[0]?.item.title
+                        }
+                      />
+                    );
+                  }
                 )}
               </div>
             </div>

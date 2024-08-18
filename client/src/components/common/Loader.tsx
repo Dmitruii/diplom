@@ -1,9 +1,29 @@
 "use client";
 
-import { useAppSelector } from "@/store/hooks";
+import client from "@/directus/api";
+import { IUser } from "@/lib/types";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setUser } from "@/store/slice/UserSlice";
+import { readMe } from "@directus/sdk";
 import { Spinner } from "flowbite-react";
+import { useEffect } from "react";
 
 const Loader = () => {
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.user.user);
+  const fetchUserData = async () => {
+    const user = await client.request<IUser>(
+      readMe({
+        fields: ["*"],
+      })
+    );
+    dispatch(setUser(user));
+  };
+
+  useEffect(() => {
+    !user && fetchUserData();
+  }, []);
+
   const isLoading = useAppSelector((state) => state.globalModals.isLoading);
 
   return (

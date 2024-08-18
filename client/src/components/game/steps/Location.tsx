@@ -21,7 +21,6 @@ const LocationStep = () => {
     handleSubmit,
     formState: { errors },
     watch,
-    getValues,
   } = useForm<Inputs>();
   const [locationOptions, setLocationOptions] = useState<IOption[]>([]);
 
@@ -62,11 +61,11 @@ const LocationStep = () => {
       </div>
 
       <BottomBarButtons
-        onClickNextStep={() =>
+        onClickNextStep={() => {
           dispatch(
-            setLocation(locationOptions.find((option) => option.value === loc))
-          )
-        }
+            setLocation(locationOptions.find((option) => option.value == loc))
+          );
+        }}
         isValid={!!loc?.length}
       />
     </div>
