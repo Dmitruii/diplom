@@ -63,7 +63,6 @@ export const TournamentSlice = createSlice({
       });
     },
     setPlayersType: (state, { payload }: PayloadAction<any>) => {
-      console.log(payload);
       state.playersType = payload[0].collection[0].collection;
     },
     setIsModalOpen: (state) => {

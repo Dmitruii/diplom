@@ -1,19 +1,31 @@
-'use client';
+"use client";
 
-import { Avatar, Dropdown, Navbar } from 'flowbite-react';
-import Logo from './Logo';
-import { Dispatch, SetStateAction } from 'react';
-import BurgerSidebarButton from './BurgerSidebarButton';
-import Link from 'next/link';
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import Logo from "./Logo";
+import { Dispatch, SetStateAction } from "react";
+import BurgerSidebarButton from "./BurgerSidebarButton";
+import Link from "next/link";
+import client from "@/directus/api";
+import { useAppDispatch } from "@/store/hooks";
+import { setIsLoading } from "@/store/slice/GlobalModalsSlice";
+import { useRouter } from "next/navigation";
 
 interface INavbarComp {
-  setIsOpen: Dispatch<SetStateAction<boolean>>
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const NavbarComp = ({setIsOpen}: INavbarComp) => {
+const NavbarComp = ({ setIsOpen }: INavbarComp) => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const logout = async () => {
+    dispatch(setIsLoading(true));
+    await client.logout();
+    router.push("/signin");
+  };
+
   return (
-    <Navbar className='bg-gray-50 border-b-2' >
-      <div className='select-none flex items-center gap-3'>
+    <Navbar className="bg-gray-50 border-b-2">
+      <div className="select-none flex items-center gap-3">
         <BurgerSidebarButton setIsOpen={setIsOpen} />
         <Logo />
       </div>
@@ -23,27 +35,31 @@ const NavbarComp = ({setIsOpen}: INavbarComp) => {
           arrowIcon={false}
           inline
           label={
-            <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+            <Avatar
+              alt="User settings"
+              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+              rounded
+            />
           }
         >
           <Dropdown.Header>
             <span className="block text-sm">Stan Wile</span>
-            <span className="block truncate text-sm font-medium">example@lol.com</span>
+            <span className="block truncate text-sm font-medium">
+              example@lol.com
+            </span>
           </Dropdown.Header>
           <Dropdown.Item>
-            <Link href='/profile/edit'>
-              Edit Profile
-            </Link>
+            <Link href="/profile/edit">Edit Profile</Link>
           </Dropdown.Item>
           <Dropdown.Item>Statistics</Dropdown.Item>
           <Dropdown.Item>Settings</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>
     </Navbar>
   );
-}
+};
 
-export default NavbarComp
+export default NavbarComp;

@@ -30,8 +30,6 @@ const PlayerList = () => {
     );
   };
 
-  // console.log(teams);
-
   return (
     <div className="w-1/3 max-h-96 overflow-scroll flex flex-col gap-3">
       {teams.map((team) => (

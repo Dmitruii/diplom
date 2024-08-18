@@ -6,10 +6,6 @@ const GameMatch = ({ match, topParty, bottomParty }: MatchComponentProps) => {
   const matches = useAppSelector((state) => state.tournament.matches);
   const prev = findImmediatePreviousMatches(matches, match.id);
 
-  //   if (match.id == 415) {
-  //     console.log(match.participants);
-  //   }
-
   return (
     <div className="border-2 flex flex-col gap-1 px-4 py-2">
       <div className="flex h-10 items-center">

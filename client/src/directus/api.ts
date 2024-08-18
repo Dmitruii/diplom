@@ -1,9 +1,8 @@
-import { createDirectus, rest } from "@directus/sdk";
+import { authentication, createDirectus, rest } from "@directus/sdk";
 
-const API_URL = process.env.API_URL as string;
-
-const client = createDirectus("http://0.0.0.0:8055").with(
-  rest({ credentials: "include" })
-);
+const client = createDirectus(process.env.NEXT_PUBLIC_API_URL as string)
+  // .with(authentication("json"))
+  .with(rest({ credentials: "include" }))
+  .with(authentication("session", { credentials: "include" }));
 
 export default client;

@@ -26,8 +26,6 @@ const GameReview = () => {
     .map((bracket) => bracket.participants)
     .flat();
 
-  console.log(location);
-
   const createTournament = async () => {
     dispatch(setIsLoading(true));
     try {

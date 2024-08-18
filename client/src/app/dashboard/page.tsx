@@ -6,12 +6,15 @@ import DashboardLayout from "@/components/layouts/DashboardLayout";
 import client from "@/directus/api";
 import { entities } from "@/lib/data";
 import { ITournament } from "@/lib/types";
+import { useAppDispatch } from "@/store/hooks";
+import { setIsLoading } from "@/store/slice/GlobalModalsSlice";
 import { readItems } from "@directus/sdk";
 import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const adminId = "8afdd44b-8669-40d9-8061-1c2cca4a3fc4";
   const adminId2 = "ee75b112-e665-4a3b-b207-0714daeb488a";
+  const dispatch = useAppDispatch();
   const [tournaments, setTournaments] = useState<ITournament[] | null>(null);
 
   const fetch = async () => {
@@ -42,6 +45,7 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    dispatch(setIsLoading(false));
     fetch();
   }, []);
 
