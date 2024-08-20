@@ -1,11 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import BottomBarButtons from "../BottomBarButtons";
-import {
-  createItem,
-  createItems,
-  updateItem,
-  updateItems,
-} from "@directus/sdk";
+import { createItem, createItems, updateItem } from "@directus/sdk";
 import client from "@/directus/api";
 import { entities } from "@/lib/data";
 import { getUpdatedMatches } from "@/utils/getUpdatedMatches";
@@ -16,6 +11,7 @@ const GameReview = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const game = useAppSelector((state) => state.game.game);
+  const user = useAppSelector((state) => state.user.user);
   const game2 = useAppSelector((state) => state.game);
   const isSolo = useAppSelector((state) => state.game.isSolo);
   const brackets = useAppSelector((state) => state.game.brackets);
@@ -32,7 +28,7 @@ const GameReview = () => {
       console.log(location);
       const tournament = await client.request(
         createItem(entities.tournaments, {
-          admin_id: "8afdd44b-8669-40d9-8061-1c2cca4a3fc4",
+          admin_id: user.id as string,
           games_id: game.game?.value,
           name: game.gameTitle,
           location: location?.value,

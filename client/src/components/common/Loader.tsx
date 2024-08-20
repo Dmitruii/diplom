@@ -1,9 +1,11 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import useUserInfo from "@/hooks/useUserInfo";
+import { useAppSelector } from "@/store/hooks";
 import { Spinner } from "flowbite-react";
 
 const Loader = () => {
+  useUserInfo();
   const isLoading = useAppSelector((state) => state.globalModals.isLoading);
 
   return (

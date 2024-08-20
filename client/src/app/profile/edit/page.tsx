@@ -136,7 +136,11 @@ const ProfileImage = ({ onClick }: IProfileImage) => {
       <div className="duration-100 group-hover:bg-slate-700/40 absolute top-0 bottom-0 right-0 left-0" />
       <Avatar
         alt="profile"
-        img={`http://localhost:8055/assets/${user?.avatar}`}
+        img={
+          user?.avatar
+            ? `${process.env.NEXT_PUBLIC_API_URL}/assets/${user?.avatar}`
+            : "/profile.svg"
+        }
         size="lg"
         statusPosition="top-center"
       />

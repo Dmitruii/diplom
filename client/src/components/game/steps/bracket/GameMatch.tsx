@@ -2,7 +2,7 @@ import { MatchComponentProps } from "@g-loot/react-tournament-brackets/dist/src/
 import { useAppSelector } from "@/store/hooks";
 import GameMatchItem from "./GameMatchItem";
 
-const GameMatch = ({ match, topParty, bottomParty }: MatchComponentProps) => {
+const GameMatch = ({ match }: MatchComponentProps) => {
   const matches = useAppSelector((state) => state.tournament.matches);
   const prev = findImmediatePreviousMatches(matches, match.id);
 

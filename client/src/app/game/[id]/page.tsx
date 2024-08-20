@@ -3,10 +3,15 @@
 import GameMatch from "@/components/game/steps/bracket/GameMatch";
 import client from "@/directus/api";
 import { entities } from "@/lib/data";
+import { ITournament } from "@/lib/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { setMatches, setPlayersType } from "@/store/slice/TournamentSlice";
+import {
+  setAdmin,
+  setMatches,
+  setPlayersType,
+} from "@/store/slice/TournamentSlice";
 import tournaments from "@/utils/tournaments";
-import { readItems } from "@directus/sdk";
+import { readItem, readItems } from "@directus/sdk";
 import { SingleEliminationBracket } from "@g-loot/react-tournament-brackets";
 import { Button } from "flowbite-react";
 import { useRouter } from "next/navigation";
@@ -33,6 +38,10 @@ const Game = ({ params }: { params: { id: string } }) => {
   const isValid = isValidFinal();
 
   const fetch = async () => {
+    const tournament = await client.request(
+      readItem(entities.tournaments, params.id)
+    );
+    dispatch(setAdmin(tournament.admin_id));
     const data = await client.request(
       readItems(entities.matches, {
         filter: {

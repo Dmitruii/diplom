@@ -4,6 +4,7 @@ import { EditProfileReducer } from "./slice/EditProfileSlice";
 import { GlobalModalsReducer } from "./slice/GlobalModalsSlice";
 import { TournamentSliceReducer } from "./slice/TournamentSlice";
 import { UserReducer } from "./slice/UserSlice";
+import { TournamentsReducer } from "./slice/TournamentsSlice";
 
 export const makeStore = () => {
   return configureStore({
@@ -13,6 +14,7 @@ export const makeStore = () => {
       globalModals: GlobalModalsReducer,
       tournament: TournamentSliceReducer,
       user: UserReducer,
+      tournaments: TournamentsReducer,
     },
   });
 };

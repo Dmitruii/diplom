@@ -1,24 +1,31 @@
-'use client';
+"use client";
 
-import { CustomFlowbiteTheme, Pagination } from 'flowbite-react';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { setPage } from "@/store/slice/TournamentsSlice";
+import { Pagination } from "flowbite-react";
 
 const PaginationComp = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const page = useAppSelector((state) => state.tournaments.page);
+  const limit = useAppSelector((state) => state.tournaments.limit);
+  const total = useAppSelector((state) => state.tournaments.totalTournaments);
+  const dispatch = useAppDispatch();
 
-  const onPageChange = (page: number) => setCurrentPage(page);
+  const onPageChange = (page: number) => dispatch(setPage(page));
 
   return (
     <div className="flex overflow-x-auto sm:justify-center">
       <Pagination
         theme={{
-            pages: {selector: {
-                active: "bg-blue-100 text-blue-600 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
-              }}
+          pages: {
+            selector: {
+              active:
+                "bg-blue-100 text-blue-600 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
+            },
+          },
         }}
         layout="pagination"
-        currentPage={currentPage}
-        totalPages={1000}
+        currentPage={page}
+        totalPages={Math.round(total / limit)}
         onPageChange={onPageChange}
         previousLabel=""
         nextLabel=""
@@ -26,6 +33,6 @@ const PaginationComp = () => {
       />
     </div>
   );
-}
+};
 
-export default PaginationComp
+export default PaginationComp;

@@ -11,6 +11,7 @@ import {
 
 import SidebarLink from "./SidebarLink";
 import Link from "next/link";
+import Logo from "./Logo";
 
 interface ISidebarComp {
   isOpen: boolean;
@@ -28,9 +29,7 @@ export const SidebarComp = ({ isOpen, setIsOpen }: ISidebarComp) => {
       >
         <div className="mb-5 px-2 flex justify-between items-center">
           <BurgerSidebarButton setIsOpen={setIsOpen} />
-          <Sidebar.Logo className="mb-0" href="#" img="/logo.svg" imgAlt="Logo">
-            E-Sportech
-          </Sidebar.Logo>
+          <Logo />
         </div>
         <div className="" data-testid="flowbite-sidebar-items">
           <ul
@@ -45,8 +44,8 @@ export const SidebarComp = ({ isOpen, setIsOpen }: ISidebarComp) => {
             />
             <SidebarLink
               icon={<HiOutlineUserGroup size={24} />}
-              href="/games"
-              title="games"
+              href="/tournaments"
+              title="tournaments"
             />
             <SidebarLink
               icon={<HiLocationMarker size={24} />}

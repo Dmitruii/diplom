@@ -2,7 +2,7 @@ import { IOption } from "@/lib/types";
 
 const toOptions = (
   array: any[],
-  label: string,
+  label: string = "label",
   value: string = "id"
 ): IOption[] => {
   const options = array.map((item) => ({

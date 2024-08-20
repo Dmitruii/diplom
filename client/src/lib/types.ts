@@ -1,4 +1,4 @@
-export type IFilterTypes = "select" | "multiselect" | "textinput";
+export type IFilterTypes = "select" | "multiselect" | "textinput" | "date";
 
 export interface IFilter {
   type: IFilterTypes;
@@ -123,11 +123,23 @@ export interface ITournament {
     name: string;
   };
   id: number;
-  location: {
-    title: string;
-  };
+  location: ILocation;
   name: string;
-  winner_id: any;
+  winner_id: {
+    collection: "directus_users" | "teams";
+    id: number;
+    item: ITeam | IUser;
+  }[];
+}
+
+export interface ILocation {
+  id: number;
+  title: string;
+}
+
+interface ITeam {
+  id: number;
+  title: string;
 }
 
 export interface IUser {

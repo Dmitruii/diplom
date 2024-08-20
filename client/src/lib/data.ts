@@ -164,6 +164,23 @@ export const gamesOptions: IOption[] = [
   { label: "Your Game", value: "YourGame" },
 ];
 
+export const tournamentsFilterSortOptions: IOption[] = [
+  { label: "Choose", value: "" },
+  { label: "asc date", value: "date_created" },
+  { label: "desc date", value: "-date_created" },
+  { label: "asc title", value: "name" },
+  { label: "desc title", value: "-name" },
+];
+
+export const perPageOptions: IOption[] = [
+  { label: "2", value: 2 },
+  { label: "5", value: 5 },
+  { label: "10", value: 10 },
+  { label: "20", value: 20 },
+  { label: "50", value: 50 },
+  { label: "100", value: 100 },
+];
+
 export const WhiteTheme = createTheme({
   textColor: { main: "#000000", highlighted: "#07090D", dark: "#3E414D" },
   matchBackground: { wonColor: "#daebf9", lostColor: "#96c6da" },

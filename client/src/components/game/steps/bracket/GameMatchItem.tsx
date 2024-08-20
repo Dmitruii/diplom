@@ -12,6 +12,8 @@ interface IGameMatchItem {
 }
 
 const GameMatchItem = ({ match, participants = [], index }: IGameMatchItem) => {
+  const admin = useAppSelector((state) => state.tournament.admin_id);
+  const user: any = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.tournament.playersType);
 
@@ -50,35 +52,43 @@ const GameMatchItem = ({ match, participants = [], index }: IGameMatchItem) => {
 
   return (
     <>
-      {match.participants[index].id ? (
+      {user?.id === admin ? (
+        <>
+          {match.participants[index].id ? (
+            <div className="w-full flex justify-between">
+              <div>{match.participants[index]?.name}</div>
+              {match.tournamentRoundText != "1" && (
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setPacticapantFunc({})}
+                >
+                  X
+                </span>
+              )}
+            </div>
+          ) : (
+            <Select
+              className="w-full"
+              onChange={(e) =>
+                setPacticapantFunc(
+                  participants.find((part) => part.id == e.target.value)
+                )
+              }
+            >
+              {part.map((participant: any) => {
+                return (
+                  <option key={participant.id} value={participant.id}>
+                    {participant.name}
+                  </option>
+                );
+              })}
+            </Select>
+          )}
+        </>
+      ) : (
         <div className="w-full flex justify-between">
           <div>{match.participants[index]?.name}</div>
-          {match.tournamentRoundText != "1" && (
-            <span
-              className="cursor-pointer"
-              onClick={() => setPacticapantFunc({})}
-            >
-              X
-            </span>
-          )}
         </div>
-      ) : (
-        <Select
-          className="w-full"
-          onChange={(e) =>
-            setPacticapantFunc(
-              participants.find((part) => part.id == e.target.value)
-            )
-          }
-        >
-          {part.map((participant: any) => {
-            return (
-              <option key={participant.id} value={participant.id}>
-                {participant.name}
-              </option>
-            );
-          })}
-        </Select>
       )}
     </>
   );

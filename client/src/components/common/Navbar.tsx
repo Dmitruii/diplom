@@ -28,18 +28,6 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
     dispatch(setUser(null));
     router.push("/signin");
   };
-  const fetchUserData = async () => {
-    const user = await client.request<IUser>(
-      readMe({
-        fields: ["*"],
-      })
-    );
-    dispatch(setUser(user));
-  };
-
-  useEffect(() => {
-    !user && fetchUserData();
-  }, []);
 
   return (
     <Navbar className="bg-gray-50 border-b-2">

@@ -5,6 +5,7 @@ export interface ITournamentSlice {
   playersType: string;
   isModalOpen: boolean;
   winner: any;
+  admin_id: string | null;
 }
 
 const initialState: ITournamentSlice = {
@@ -12,6 +13,7 @@ const initialState: ITournamentSlice = {
   playersType: "",
   isModalOpen: false,
   winner: null,
+  admin_id: null,
 };
 
 export const TournamentSlice = createSlice({
@@ -71,6 +73,9 @@ export const TournamentSlice = createSlice({
     setWiner: (state, { payload }: PayloadAction<any>) => {
       state.winner = payload;
     },
+    setAdmin: (state, { payload }: PayloadAction<string>) => {
+      state.admin_id = payload;
+    },
   },
 });
 
@@ -80,5 +85,6 @@ export const {
   setPlayersType,
   setIsModalOpen,
   setWiner,
+  setAdmin,
 } = TournamentSlice.actions;
 export const TournamentSliceReducer = TournamentSlice.reducer;
