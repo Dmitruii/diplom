@@ -61,8 +61,8 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
           <Dropdown.Item>
             <Link href="/profile/edit">Edit Profile</Link>
           </Dropdown.Item>
-          <Dropdown.Item>Statistics</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
+          {/* <Dropdown.Item>Statistics</Dropdown.Item>
+          <Dropdown.Item>Settings</Dropdown.Item> */}
           <Dropdown.Divider />
           <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
         </Dropdown>

@@ -8,6 +8,7 @@ interface ITournament {
   game: string;
   id: number;
   winner: any;
+  admin_id: string;
 }
 
 const Tournament = ({
@@ -18,6 +19,7 @@ const Tournament = ({
   date,
   game,
   winner,
+  admin_id,
 }: ITournament) => {
   const router = useRouter();
 
@@ -33,7 +35,15 @@ const Tournament = ({
     >
       <div className="flex-1 flex justify-center">{name}</div>
       <div className="flex-1 flex justify-center">{location}</div>
-      <div className="flex-1 flex justify-center">{admin}</div>
+      <div
+        className="hover:underline flex-1 flex justify-center cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation();
+          router.push(`/profile/${admin_id}`);
+        }}
+      >
+        {admin}
+      </div>
       <div className="flex-1 flex justify-center">{game}</div>
       <div className="flex-1 flex justify-center">
         {new Date(date).toLocaleString("en-US", {

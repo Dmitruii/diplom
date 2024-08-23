@@ -34,8 +34,8 @@ const TableComp = () => {
                     <Table.Cell>{i + 1}</Table.Cell>
                     <Table.Cell>{tournament.name}</Table.Cell>
                     <Table.Cell>
-                      {tournament.winner_id[0]?.item.title ||
-                        tournament.winner_id[0]?.item.first_name ||
+                      {(tournament.winner_id[0] as any)?.item.title ||
+                        (tournament.winner_id[0] as any)?.item.first_name ||
                         "No winner"}
                     </Table.Cell>
                     <Table.Cell>
@@ -50,7 +50,15 @@ const TableComp = () => {
                     </Table.Cell>
                     <Table.Cell>{tournament.games_id.name}</Table.Cell>
                     <Table.Cell>{tournament.location.title}</Table.Cell>
-                    <Table.Cell>{tournament.admin_id.first_name}</Table.Cell>
+                    <Table.Cell
+                      className="hover:underline"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(`/profile/${tournament.admin_id.id}`);
+                      }}
+                    >
+                      {tournament.admin_id.first_name}
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>

@@ -116,6 +116,7 @@ export interface IToast {
 
 export interface ITournament {
   admin_id: {
+    id: string;
     first_name: string;
   };
   date_created: string;
@@ -128,7 +129,7 @@ export interface ITournament {
   winner_id: {
     collection: "directus_users" | "teams";
     id: number;
-    item: ITeam | IUser;
+    item: IUser | ITeam;
   }[];
 }
 
@@ -137,7 +138,7 @@ export interface ILocation {
   title: string;
 }
 
-interface ITeam {
+export interface ITeam {
   id: number;
   title: string;
 }
@@ -161,5 +162,5 @@ export interface IUser {
   token: string | null;
   last_access: string;
   last_page: string;
-  group_id: number;
+  group_id: any;
 }

@@ -34,7 +34,7 @@ const CreateTeam = () => {
     }
 
     if (!errorSet) {
-      dispatch(addTeam({ name: data.gameName, players: [] }));
+      dispatch(addTeam({ name: data.gameName, players: [] } as any));
     }
   };
 

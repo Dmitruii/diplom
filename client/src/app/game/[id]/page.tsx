@@ -56,7 +56,7 @@ const Game = ({ params }: { params: { id: string } }) => {
         fields: ["*", "collection.*.*", "winner_id.*"],
       })
     );
-    dispatch(setMatches(tournaments(data)));
+    dispatch(setMatches(tournaments(data as any)));
     dispatch(setPlayersType(data));
   };
 

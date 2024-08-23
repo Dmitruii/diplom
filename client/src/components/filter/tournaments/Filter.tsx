@@ -1,6 +1,6 @@
 "use client";
 import { Button, TextInput } from "flowbite-react";
-import FilterItem from "./FilterItem";
+import FilterItem from "../FilterItem";
 import { HiChevronDown } from "react-icons/hi";
 import { HiChevronUp } from "react-icons/hi";
 import { useEffect, useState } from "react";
@@ -85,6 +85,7 @@ const Filter = () => {
   const fetchInit = async () => {
     // fetch users
     const users = await client.request<IUser[]>(readUsers());
+    console.log(users);
     dispatch(setUsersOptions(toOptions(users, "first_name")));
 
     // fetch locations
@@ -115,7 +116,7 @@ const Filter = () => {
         aggregate: {
           countDistinct: ["id"],
         },
-      })
+      } as any)
     );
     dispatch(setTotalTournaments(count[0].countDistinct.id));
   };
@@ -140,7 +141,6 @@ const Filter = () => {
 
   return (
     <>
-      <h1>{totalTournaments}</h1>
       <div className="flex justify-between">
         <h1 className="text-3xl font-semibold">Filter</h1>
         <div className="flex gap-3">

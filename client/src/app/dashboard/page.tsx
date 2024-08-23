@@ -6,7 +6,7 @@ import DashboardLayout from "@/components/layouts/DashboardLayout";
 import client from "@/directus/api";
 import useUserInfo from "@/hooks/useUserInfo";
 import { entities } from "@/lib/data";
-import { ITournament } from "@/lib/types";
+import { ITeam, ITournament, IUser } from "@/lib/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { setIsLoading } from "@/store/slice/GlobalModalsSlice";
 import { readItems } from "@directus/sdk";
@@ -36,7 +36,7 @@ const Dashboard = () => {
           sort: ["-date_created"],
           fields: [
             "*",
-            "admin_id.first_name",
+            "admin_id.*",
             "location.title",
             "games_id.name",
             "winner_id.*.*",
@@ -92,11 +92,12 @@ const Dashboard = () => {
                             name={name}
                             location={location.title}
                             admin={admin_id.first_name}
+                            admin_id={admin_id.id}
                             date={date_created}
                             game={games_id.name}
                             winner={
-                              winner_id?.[0]?.item.first_name ||
-                              winner_id?.[0]?.item.title
+                              (winner_id?.[0]?.item as IUser).first_name ||
+                              (winner_id?.[0]?.item as ITeam).title
                             }
                           />
                         );

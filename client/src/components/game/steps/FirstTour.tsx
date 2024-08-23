@@ -53,6 +53,7 @@ const FirstTour = () => {
   useEffect(() => {
     dispatch(setOptionsSoloPlayers());
     setBrakets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import Filter from "@/components/filter/Filter";
-import TableComp from "@/components/filter/Table";
+import Filter from "@/components/filter/tournaments/Filter";
+import TableComp from "@/components/filter/tournaments/Table";
 import DashboardLayout from "@/components/layouts/DashboardLayout";
 import client from "@/directus/api";
 import { entities } from "@/lib/data";
@@ -42,7 +42,7 @@ const Tournaments = () => {
         aggregate: {
           countDistinct: ["id"],
         },
-      })
+      } as any)
     );
     dispatch(setTotalTournaments(count[0].countDistinct.id));
   };

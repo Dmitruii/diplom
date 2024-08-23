@@ -32,7 +32,7 @@ export type Inputs = {
 
 const Edit = () => {
   const router = useRouter();
-  const user = useAppSelector((state) => state.user.user);
+  const user: any = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
   const open = () => dispatch(openProfileModal());
   const [options, setOptions] = useState<IOption[]>([]);
@@ -156,7 +156,7 @@ const ProfileImage = ({ onClick }: IProfileImage) => {
 };
 
 function getSetValues(obj: any) {
-  let result = {};
+  let result: any = {};
 
   for (let key in obj) {
     if (obj[key] !== undefined && obj[key] !== "") {

@@ -75,7 +75,7 @@ const Final = ({ params }: { params: { id: string } }) => {
           fields: ["*", "collection.*.*", "winner_id.*"],
         })
       );
-      const newMatches = tournaments(data);
+      const newMatches = tournaments(data as any);
       dispatch(setMatches(newMatches));
       const final = newMatches.find((match) => match.nextMatchId === null);
       setOptions(toOptions(final.participants, "name", "id"));

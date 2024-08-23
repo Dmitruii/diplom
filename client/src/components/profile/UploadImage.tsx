@@ -11,7 +11,7 @@ interface IUploadImage {}
 const UploadImage = ({}: IUploadImage) => {
   const dispatch = useAppDispatch();
   const file = useAppSelector((state) => state.user.file);
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: any) => {
     dispatch(setFile({ file: acceptedFiles[0] }));
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

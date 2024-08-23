@@ -47,7 +47,7 @@ export const SidebarComp = ({ isOpen, setIsOpen }: ISidebarComp) => {
               href="/tournaments"
               title="tournaments"
             />
-            <SidebarLink
+            {/* <SidebarLink
               icon={<HiLocationMarker size={24} />}
               href="#"
               title="location"
@@ -56,7 +56,7 @@ export const SidebarComp = ({ isOpen, setIsOpen }: ISidebarComp) => {
               icon={<HiOutlineMail size={24} />}
               href="#"
               title="notifications"
-            />
+            /> */}
           </ul>
         </div>
       </Sidebar>

@@ -61,7 +61,6 @@ export const TournamentsSlice = createSlice({
       state.limit = payload;
     },
     setPage: (state, { payload }: PayloadAction<number>) => {
-      console.log(payload);
       state.page = payload;
     },
   },

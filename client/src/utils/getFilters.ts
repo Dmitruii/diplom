@@ -1,4 +1,4 @@
-import { Inputs } from "@/components/filter/Filter";
+import { Inputs } from "@/components/filter/tournaments/Filter";
 
 const getFilters = (data: Inputs, startDate: any, endDate: any) => {
   const options: any = {

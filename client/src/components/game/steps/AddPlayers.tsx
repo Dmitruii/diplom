@@ -40,7 +40,11 @@ const AddPlayers = () => {
   const teams = useAppSelector((state) => state.game.game.teams);
   const isSolo = useAppSelector((state) => state.game.isSolo);
 
-  const teamsOptions = useMemo(() => toOptions(teams, "name"), []);
+  const teamsOptions = useMemo(
+    () => toOptions(teams, "name"),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
   const [groups, setGroups] = useState<any[]>([]);
 
   const chosenGroup = watch("group");

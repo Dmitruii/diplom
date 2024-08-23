@@ -51,7 +51,7 @@ const SignUpContent = () => {
           group_id: data.group,
           role: "57c1ea9c-6aeb-4451-9cf5-f6cbca2912aa",
           ...optionalFields,
-        })
+        } as any)
       );
       const res: any = await client.login(data.email, data.password, {
         mode: "session",

@@ -171,6 +171,15 @@ export const tournamentsFilterSortOptions: IOption[] = [
   { label: "asc title", value: "name" },
   { label: "desc title", value: "-name" },
 ];
+export const playersFilterSortOptions: IOption[] = [
+  { label: "Choose", value: "" },
+  { label: "asc first name", value: "first_name" },
+  { label: "desc first name", value: "-first_name" },
+  { label: "asc last name", value: "last_name" },
+  { label: "desc last name", value: "-last_name" },
+  { label: "asc email", value: "email" },
+  { label: "desc email", value: "-email" },
+];
 
 export const perPageOptions: IOption[] = [
   { label: "2", value: 2 },

@@ -11,7 +11,7 @@ const GoogleButton = ({ label }: IGoogleButton) => {
     onSuccess: async (codeResponse: any) => {
       console.log(codeResponse);
       //   const res: any = jwtDecode(codeResponse.access_token);
-      const { data: profile } = await fetch(
+      const { data: profile }: any = await fetch(
         "https://www.googleapis.com/oauth2/v1/userinfo",
         {
           headers: {
