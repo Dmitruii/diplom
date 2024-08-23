@@ -9,6 +9,7 @@ import { deleteFile, updateUser, uploadFiles } from "@directus/sdk";
 import { setAvatar } from "@/store/slice/UserSlice";
 import UploadImage from "../profile/UploadImage";
 import { setToast } from "@/store/slice/GlobalModalsSlice";
+import { IUser } from "@/lib/types";
 
 const EditProfileModal = () => {
   const dispatch = useAppDispatch();
@@ -20,10 +21,10 @@ const EditProfileModal = () => {
   const update = async () => {
     const formData = new FormData();
     formData.append("file_1_property", "Value");
-    formData.append("file", file);
+    formData.append("file", file as any);
     const result = await client.request(uploadFiles(formData));
     const { avatar } = await client.request(
-      updateUser(user.id, { avatar: result.id })
+      updateUser((user as IUser).id, { avatar: result.id })
     );
     dispatch(setAvatar({ avatar }));
     close();
@@ -33,8 +34,12 @@ const EditProfileModal = () => {
   };
 
   const remove = async () => {
-    const avatar = client.request(updateUser(user.id, { avatar: null }));
-    const file = await client.request(deleteFile(user.avatar));
+    const avatar = client.request(
+      updateUser((user as IUser).id, { avatar: null })
+    );
+    const file = await client.request(
+      deleteFile((user as IUser).avatar as string)
+    );
     dispatch(setAvatar({ avatar: null }));
     dispatch(
       setToast({ type: "success", label: "Avatar removed successfully" })

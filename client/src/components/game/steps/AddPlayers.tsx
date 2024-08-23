@@ -107,6 +107,7 @@ const AddPlayers = () => {
 
   useEffect(() => {
     chosenGroup && fetchUsersData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chosenGroup]);
 
   return (

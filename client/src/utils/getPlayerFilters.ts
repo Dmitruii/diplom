@@ -19,7 +19,7 @@ const getPlayerFilters = (data: Inputs) => {
 
   // set filters
   Object.keys(data).map((key: string) => {
-    if (data[key].trim()) {
+    if ((data as any)[key].trim()) {
       if (key === "first_name") {
         options.filter._and.push({
           first_name: {

@@ -1,10 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import Player from "./Player";
-import {
-  addPlayersOptions,
-  removePlayer,
-  setActivePlayersOptions,
-} from "@/store/slice/GameSlice";
+import { removePlayer, setActivePlayersOptions } from "@/store/slice/GameSlice";
 import { IOption } from "@/lib/types";
 
 const PlayerList = () => {

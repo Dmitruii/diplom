@@ -6,6 +6,7 @@ import { entities } from "@/lib/data";
 import { getUpdatedMatches } from "@/utils/getUpdatedMatches";
 import { setIsLoading, setToast } from "@/store/slice/GlobalModalsSlice";
 import { useRouter } from "next/navigation";
+import { IUser } from "@/lib/types";
 
 const GameReview = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ const GameReview = () => {
       console.log(location);
       const tournament = await client.request(
         createItem(entities.tournaments, {
-          admin_id: user.id as string,
+          admin_id: (user as IUser).id,
           games_id: game.game?.value,
           name: game.gameTitle,
           location: location?.value,

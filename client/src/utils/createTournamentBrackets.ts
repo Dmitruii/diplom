@@ -1,3 +1,5 @@
+import { IGame } from "@/lib/types";
+
 export function createTournamentBracketsTeam(game: IGame) {
   // Combine teams and solo players into a single array of participants
   let participants = [];
@@ -18,7 +20,7 @@ export function createTournamentBracketsTeam(game: IGame) {
     return [];
   }
 
-  let matches = [];
+  let matches: any[] = [];
   let roundNumber = 1;
   let matchId = 1;
 

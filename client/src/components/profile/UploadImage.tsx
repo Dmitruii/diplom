@@ -13,6 +13,7 @@ const UploadImage = ({}: IUploadImage) => {
   const file = useAppSelector((state) => state.user.file);
   const onDrop = useCallback((acceptedFiles: any) => {
     dispatch(setFile({ file: acceptedFiles[0] }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

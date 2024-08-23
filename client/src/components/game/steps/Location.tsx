@@ -63,7 +63,9 @@ const LocationStep = () => {
       <BottomBarButtons
         onClickNextStep={() => {
           dispatch(
-            setLocation(locationOptions.find((option) => option.value == loc))
+            setLocation(
+              locationOptions.find((option) => option.value == loc) as IOption
+            )
           );
         }}
         isValid={!!loc?.length}

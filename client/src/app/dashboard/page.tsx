@@ -50,6 +50,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(setIsLoading(false));
     fetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   return (

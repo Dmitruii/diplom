@@ -62,6 +62,7 @@ const Game = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     fetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

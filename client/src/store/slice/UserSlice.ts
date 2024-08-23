@@ -19,7 +19,7 @@ export const UserSlice = createSlice({
       state.user = payload;
     },
     setAvatar: (state, { payload }: PayloadAction<Pick<IUser, "avatar">>) => {
-      state.user = { ...state.user, avatar: payload.avatar };
+      state.user = { ...state.user, avatar: payload.avatar } as IUser;
     },
     setFile: (state, { payload }: PayloadAction<Pick<IUserSlice, "file">>) => {
       console.log(payload.file);

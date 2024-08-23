@@ -44,7 +44,7 @@ const getFilters = (data: Inputs, startDate: any, endDate: any) => {
 
   // set filters
   Object.keys(data).map((key: string) => {
-    if (data[key].trim()) {
+    if ((data as any)[key].trim()) {
       if (key === "title") {
         options.filter._and.push({
           name: {

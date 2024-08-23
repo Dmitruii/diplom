@@ -75,7 +75,9 @@ const SignUpContent = () => {
 
   useEffect(() => {
     fetchOptions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     dispatch(setIsLoading(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

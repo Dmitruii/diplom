@@ -104,10 +104,12 @@ const Filter = () => {
 
   useEffect(() => {
     fetchInit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     handle(getValues());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (

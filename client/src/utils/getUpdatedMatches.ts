@@ -7,7 +7,7 @@ export function getUpdatedMatches(matches: any) {
     (a: any, b: any) => a.round_num - b.round_num || a.id - b.id
   );
 
-  let roundMatches = {};
+  let roundMatches: any = {};
 
   // Group matches by round_num
   updatedMatches.forEach((match: any) => {
@@ -18,7 +18,7 @@ export function getUpdatedMatches(matches: any) {
   });
 
   // Iterate over rounds
-  let rounds = Object.keys(roundMatches).sort((a, b) => a - b);
+  let rounds = Object.keys(roundMatches).sort((a: any, b: any) => a - b);
   for (let i = 0; i < rounds.length - 1; i++) {
     let currentRound = roundMatches[rounds[i]];
     let nextRound = roundMatches[rounds[i + 1]];

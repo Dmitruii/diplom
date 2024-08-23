@@ -85,6 +85,7 @@ const Final = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     fetchTour();
     fetchMatches();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
