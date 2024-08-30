@@ -1,5 +1,7 @@
-import SignUpContent from "@/components/auth/SignUpContent";
+import dynamic from "next/dynamic";
 
-export default function SignUP() {
-  return <SignUpContent />;
-}
+const SignUP = dynamic(() => import("@/components/auth/SignUpContent"), {
+  ssr: false,
+});
+
+export default SignUP;
