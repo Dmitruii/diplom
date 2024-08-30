@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
   const cookies: any = req.cookies.get("directus_session_token");
 
   // If the user is not authenticated, redirect to the sign-in page
-  if (!cookies.value && pathname !== "/signin") {
+  if (!cookies?.value && pathname !== "/signin") {
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 
