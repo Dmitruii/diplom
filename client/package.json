@@ -13,6 +13,7 @@
     "@g-loot/react-tournament-brackets": "1.0.29",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.1",
+    "@supabase/supabase-js": "^2.45.3",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "install": "^0.13.0",

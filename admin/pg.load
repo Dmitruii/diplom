@@ -1,0 +1,5 @@
+load database
+  from postgresql://postgres:1111@localhost/diploma
+  into postgresql://postgres.tvrkwhsqonoyxefglnbm:Au4jB!3pmkcD-RE@aws-0-eu-central-1.pooler.supabase.com:6543/postgres
+
+with include drop, include no drop, truncate, no truncate, disable triggers, create tables, create no tables, create indexes, create no indexes, drop indexes, reset sequences, reset no sequences, schema only, data only;
