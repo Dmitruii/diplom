@@ -9,7 +9,7 @@ interface IAuthLayout {
 const AuthLayout = ({ children }: IAuthLayout) => {
   const router = useRouter();
   const directus_data = localStorage.getItem("directus-data") as string;
-  const { access_token } = JSON.parse(directus_data || "") as {
+  const { access_token } = JSON.parse(directus_data || "{}") as {
     access_token: string;
   };
 
