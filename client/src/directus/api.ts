@@ -1,8 +1,18 @@
-import { authentication, createDirectus, rest } from "@directus/sdk";
+import { authentication, createDirectus, graphql, rest } from "@directus/sdk";
+
+class LocalStorage {
+  get() {
+    return JSON.parse(localStorage.getItem("directus-data"));
+  }
+  set(data: any) {
+    localStorage.setItem("directus-data", JSON.stringify(data));
+  }
+}
+
+const storage = new LocalStorage();
 
 const client = createDirectus(process.env.NEXT_PUBLIC_API_URL as string)
-  // .with(authentication("json"))
-  .with(rest({ credentials: "include" }))
-  .with(authentication("session", { credentials: "include" }));
+  .with(rest())
+  .with(authentication("json", { storage }));
 
 export default client;

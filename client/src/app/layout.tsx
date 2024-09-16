@@ -5,6 +5,8 @@ import Head from "next/head";
 import StoreProvider from "@/components/layouts/StoreProvider";
 import Loader from "@/components/common/Loader";
 import ToastModal from "@/components/common/ToastModal";
+import { useRouter } from "next/navigation";
+import AuthLayout from "@/components/layouts/AuthLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +26,13 @@ export default function RootLayout({
       </Head>
       <body className={inter.className + " h-screen flex flex-col"}>
         <StoreProvider>
-          <Loader />
-          <ToastModal />
-          {children}
+          <AuthLayout>
+            <>
+              <Loader />
+              <ToastModal />
+              {children}
+            </>
+          </AuthLayout>
         </StoreProvider>
       </body>
     </html>

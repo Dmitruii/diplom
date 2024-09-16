@@ -2,14 +2,13 @@
 import FormInput from "@/components/form/FormInput";
 import FormLayouts from "@/components/auth/FormLayouts";
 import { useForm } from "react-hook-form";
-import { FormEvent, useEffect } from "react";
+import { useEffect } from "react";
 import client from "@/directus/api";
-import { login } from "@directus/sdk";
-import { useGoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 import { useAppDispatch } from "@/store/hooks";
 import { setIsLoading, setToast } from "@/store/slice/GlobalModalsSlice";
 import { useRouter } from "next/navigation";
+import { login, readItems, withOptions } from "@directus/sdk";
+import { entities } from "@/lib/data";
 
 export type Inputs = {
   email: string;
@@ -28,11 +27,21 @@ export default function SignInContent() {
   const handleSignIn = async (data: Inputs) => {
     dispatch(setIsLoading(true));
     try {
+      // const team = await client.request(
+      //   withOptions(readItems(entities.teams), {
+      //     credentials: "include",
+      //   })
+      // );
       const res: any = await client.login(data.email, data.password, {
-        mode: "session",
+        // mode: "cookie",
       });
+      const games = await client.request(readItems(entities.teams));
+      // console.log(games);
+      const d = await client.getToken();
+      // console.log(d);
       router.push("/dashboard");
     } catch (e: any) {
+      console.log(e);
       dispatch(
         setToast({
           label: e.errors[0].message,
