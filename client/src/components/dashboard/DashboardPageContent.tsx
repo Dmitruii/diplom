@@ -13,7 +13,6 @@ import { readItems } from "@directus/sdk";
 import { useEffect, useState } from "react";
 
 const DashboardPageContent = () => {
-  console.log("asdasdasdasd");
   useUserInfo();
   const dispatch = useAppDispatch();
   const [tournaments, setTournaments] = useState<ITournament[] | null>(null);
