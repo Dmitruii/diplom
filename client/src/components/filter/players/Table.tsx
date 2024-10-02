@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 const TableComp = () => {
   const router = useRouter();
   const users = useAppSelector((state) => state.users.users);
+  const page = useAppSelector((state) => state.users.page);
+  const limit = useAppSelector((state) => state.users.limit);
 
   return (
     <>
@@ -25,13 +27,14 @@ const TableComp = () => {
               </Table.Head>
               <Table.Body className="divide-y">
                 {users.map((user, i) => {
+                  const index = page * limit - limit + i + 1;
                   return (
                     <Table.Row
                       onClick={() => router.push(`/profile/${user.id}`)}
                       className="cursor-pointer"
                       key={user.id}
                     >
-                      <Table.Cell>{i + 1}</Table.Cell>
+                      <Table.Cell>{page === 1 ? i + 1 : index}</Table.Cell>
                       <Table.Cell className="">
                         <Avatar
                           alt="profile"
