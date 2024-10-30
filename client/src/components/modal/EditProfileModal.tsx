@@ -5,7 +5,7 @@ import { closeProfileModal } from "@/store/slice/EditProfileSlice";
 import ModalLayout from "../layouts/ModalLayout";
 import { Button } from "flowbite-react";
 import client from "@/directus/api";
-import { deleteFile, updateUser, uploadFiles } from "@directus/sdk";
+import { deleteFile, readFiles, updateUser, uploadFiles } from "@directus/sdk";
 import { setAvatar } from "@/store/slice/UserSlice";
 import UploadImage from "../profile/UploadImage";
 import { setToast } from "@/store/slice/GlobalModalsSlice";
@@ -22,10 +22,23 @@ const EditProfileModal = () => {
     const formData = new FormData();
     formData.append("file_1_property", "Value");
     formData.append("file", file as any);
+
+    if (user?.avatar) {
+      const file = await client.request(
+        deleteFile((user as IUser).avatar as string)
+      );
+    }
+
+    // const result = await client.request(readFiles());
+    // console.log(result);
     const result = await client.request(uploadFiles(formData));
+    console.log(result);
+    console.log("-------------------------------");
     const { avatar } = await client.request(
       updateUser((user as IUser).id, { avatar: result.id })
     );
+    console.log("-------------------------------");
+    console.log(avatar);
     dispatch(setAvatar({ avatar }));
     close();
     dispatch(
