@@ -50,7 +50,7 @@ const TableComp = () => {
                       <Table.Cell>{user.first_name}</Table.Cell>
                       <Table.Cell>{user.last_name}</Table.Cell>
                       <Table.Cell>{user.email}</Table.Cell>
-                      <Table.Cell>{user.group_id.title}</Table.Cell>
+                      <Table.Cell>{user.group_id?.title}</Table.Cell>
                     </Table.Row>
                   );
                 })}

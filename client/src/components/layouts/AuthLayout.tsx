@@ -1,23 +1,26 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 interface IAuthLayout {
   children: React.ReactNode;
 }
 
-const AuthLayout = ({ children }: IAuthLayout) => {
+const AuthLayout = (props: IAuthLayout) => {
   const router = useRouter();
+  const pathname = usePathname();
   const directus_data = localStorage.getItem("directus-data") as string;
   const { access_token } = JSON.parse(directus_data || "{}") as {
     access_token: string;
   };
 
-  if (!access_token) {
-    router.push("/signin");
+  if (pathname === "/dashboard") {
+    if (!access_token) {
+      router.push("/signin");
+    }
   }
 
-  return <>{children}</>;
+  return <>{props.children}</>;
 };
 
 export default AuthLayout;

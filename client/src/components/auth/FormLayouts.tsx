@@ -61,6 +61,29 @@ const FormLayouts = ({ children, type, onSubmit }: IFormLayouts) => {
           </form>
         </div>
       </div>
+
+      <div className="flex gap-10">
+        <span>
+          About{" "}
+          <a
+            className="text-blue-700 hover:underline"
+            href="/about/developer"
+            target="_blank"
+          >
+            Developer
+          </a>
+        </span>
+        <span>
+          About{" "}
+          <a
+            className="text-blue-700 hover:underline"
+            href="/about/project"
+            target="_blank"
+          >
+            Project
+          </a>
+        </span>
+      </div>
     </div>
   );
 };

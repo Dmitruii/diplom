@@ -42,7 +42,7 @@ const PageContent = ({ params }: { params: { id: string } }) => {
           )}
         </div>
       </div>
-      <div className="my-10 text-xl">Group: {user?.group_id.title}</div>
+      <div className="my-10 text-xl">Group: {user?.group_id?.title}</div>
     </DashboardLayout>
   );
 };

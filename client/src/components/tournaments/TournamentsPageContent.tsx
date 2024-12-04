@@ -36,6 +36,7 @@ const TournamentsPageContent = () => {
         page,
       })
     );
+    console.log(tournaments);
     dispatch(setTournaments(tournaments));
     const count = await client.request<{ countDistinct: { id: number } }[]>(
       readItems(entities.tournaments, {
