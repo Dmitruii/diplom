@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "11.1.0"
+    "directus": "^11.3.2",
+    "jwt-decode": "^4.0.0",
+    "node-xlsx": "^0.24.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.17",
