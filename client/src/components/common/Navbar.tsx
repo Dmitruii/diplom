@@ -1,5 +1,5 @@
 "use client";
-
+import axios from "axios";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import Logo from "./Logo";
 import { Dispatch, SetStateAction, useEffect } from "react";
@@ -19,7 +19,7 @@ interface INavbarComp {
 }
 
 const NavbarComp = ({ setIsOpen }: INavbarComp) => {
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector((state) => state.user.user) as any;
   const router = useRouter();
   const dispatch = useAppDispatch();
   const logout = async () => {
@@ -27,6 +27,10 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
     await client.logout();
     dispatch(setUser(null));
     router.push("/signin");
+  };
+
+  const downloadExcelFile = async () => {
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/excel/${user.id}`);
   };
 
   return (
@@ -61,8 +65,14 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
           <Dropdown.Item>
             <Link href="/profile/edit">Edit Profile</Link>
           </Dropdown.Item>
-          {/* <Dropdown.Item>Statistics</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item> */}
+          <Dropdown.Item>
+            <Link
+              href={`${process.env.NEXT_PUBLIC_API_URL}/excel/${user?.id}`}
+              target="_blank"
+            >
+              Exile
+            </Link>
+          </Dropdown.Item>
           <Dropdown.Divider />
           <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
         </Dropdown>
