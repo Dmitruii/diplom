@@ -35,7 +35,7 @@ const PageContent = ({ params }: { params: { id: string } }) => {
           size="xl"
           statusPosition="top-center"
         />
-        <div className="flex text-xl">
+        <div className="text-xl">
           <h1>First name: {user?.first_name}</h1>
           {user?.last_name && (
             <h1>Last name: {user?.last_name && "Last name"}</h1>

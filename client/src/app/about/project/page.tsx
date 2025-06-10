@@ -1,4 +1,5 @@
-import React from "react";
+// app/about/project/page.tsx
+export const dynamic = "force-dynamic";
 
 const About = () => {
   return (

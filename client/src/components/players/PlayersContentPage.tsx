@@ -21,6 +21,7 @@ const PlayersContentPage = () => {
     const users = await client.request<IUser[]>(
       readUsers({ fields: ["*", "group_id.*"], limit, page })
     );
+    console.log(users);
     dispatch(setUsers(users));
   };
 

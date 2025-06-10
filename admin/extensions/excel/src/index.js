@@ -15,7 +15,9 @@ export default (router) => {
           tournament.games_id.name,
           new Date(tournament.date_created).toDateString(),
           tournament.location.title,
-          `${tournament.admin_id.first_name} ${tournament.admin_id.last_name}`,
+          `${
+            tournament.admin_id.first_name && tournament.admin_id.first_name
+          } ${tournament.admin_id.last_name && tournament.admin_id.last_name}`,
         ]),
       ];
 

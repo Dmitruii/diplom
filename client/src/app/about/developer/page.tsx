@@ -1,4 +1,5 @@
-import React from "react";
+// app/about/developer/page.tsx
+export const dynamic = "force-dynamic";
 
 const AboutMe = () => {
   return (
@@ -8,7 +9,7 @@ const AboutMe = () => {
           About Developer
         </h1>
         <p className="text-gray-600 text-lg leading-relaxed mb-6">
-          Hi, I’m <strong>Dima Naumenko</strong>, an 18-year-old computer
+          Hi, I’m <strong>Dima Naumenko</strong>, an 19-year-old computer
           engineering student from Odesa, Ukraine. I’m currently in my 4th year
           of college.
         </p>

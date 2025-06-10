@@ -125,7 +125,7 @@ const SignUpContent = () => {
           rest={{
             ...register("last_name"),
           }}
-          label="First name"
+          label="Last name"
           fieldType="text"
           placeholder="Christ"
           required

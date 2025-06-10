@@ -132,6 +132,7 @@ const GameReview = () => {
       );
       router.push("/dashboard");
     } catch (e) {
+      console.log(e);
       dispatch(
         setToast({
           label: "An error occurred while creating the tournament.",

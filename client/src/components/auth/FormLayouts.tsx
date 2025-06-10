@@ -65,23 +65,32 @@ const FormLayouts = ({ children, type, onSubmit }: IFormLayouts) => {
       <div className="flex gap-10">
         <span>
           About{" "}
-          <a
+          <Link
             className="text-blue-700 hover:underline"
             href="/about/developer"
             target="_blank"
           >
             Developer
-          </a>
+          </Link>
+        </span>
+        <span>
+          <Link
+            className="text-blue-700 hover:underline"
+            href="/tournaments"
+            target="_blank"
+          >
+            Tournaments
+          </Link>
         </span>
         <span>
           About{" "}
-          <a
+          <Link
             className="text-blue-700 hover:underline"
             href="/about/project"
             target="_blank"
           >
             Project
-          </a>
+          </Link>
         </span>
       </div>
     </div>

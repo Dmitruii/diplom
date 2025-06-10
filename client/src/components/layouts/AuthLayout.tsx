@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import { navigate } from "./redirect";
 
 interface IAuthLayout {
   children: React.ReactNode;
@@ -16,7 +17,7 @@ const AuthLayout = (props: IAuthLayout) => {
 
   if (pathname === "/dashboard") {
     if (!access_token) {
-      router.push("/signin");
+      navigate();
     }
   }
 

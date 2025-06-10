@@ -58,7 +58,6 @@ const DashboardPageContent = () => {
       <DashboardLayout>
         <div className="flex min-h-full items-center justify-center">
           <div className="w-2/3 flex flex-col items-center justify-center">
-            <h1 className="text-xl font-semibold">No games</h1>
             <StartNewGame />
             <div className="w-full">
               {!!tournaments?.length && (

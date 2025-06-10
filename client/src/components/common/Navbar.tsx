@@ -29,10 +29,6 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
     router.push("/signin");
   };
 
-  const downloadExcelFile = async () => {
-    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/excel/${user.id}`);
-  };
-
   return (
     <Navbar className="bg-gray-50 border-b-2">
       <div className="select-none flex items-center gap-3">
@@ -70,7 +66,7 @@ const NavbarComp = ({ setIsOpen }: INavbarComp) => {
               href={`${process.env.NEXT_PUBLIC_API_URL}/excel/${user?.id}`}
               target="_blank"
             >
-              Exile
+              Excel
             </Link>
           </Dropdown.Item>
           <Dropdown.Divider />

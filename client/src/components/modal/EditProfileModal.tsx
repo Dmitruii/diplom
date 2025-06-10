@@ -29,16 +29,10 @@ const EditProfileModal = () => {
       );
     }
 
-    // const result = await client.request(readFiles());
-    // console.log(result);
     const result = await client.request(uploadFiles(formData));
-    console.log(result);
-    console.log("-------------------------------");
     const { avatar } = await client.request(
       updateUser((user as IUser).id, { avatar: result.id })
     );
-    console.log("-------------------------------");
-    console.log(avatar);
     dispatch(setAvatar({ avatar }));
     close();
     dispatch(

@@ -25,9 +25,9 @@ import { setUser } from "@/store/slice/UserSlice";
 import { setIsLoading, setToast } from "@/store/slice/GlobalModalsSlice";
 
 export type Inputs = {
-  firstName: string;
-  lastName: string;
-  group: string;
+  first_name: string;
+  last_name: string;
+  group_id: string;
 };
 
 const EditPageContent = () => {
@@ -45,7 +45,7 @@ const EditPageContent = () => {
   };
 
   const update = async () => {
-    dispatch(setIsLoading(true));
+    // dispatch(setIsLoading(true));
     const updatedUser: any = await client.request(
       updateUser(user.id, getSetValues(getValues()))
     );
@@ -80,20 +80,20 @@ const EditPageContent = () => {
 
           <div className="flex flex-col gap-5">
             <FormInput
-              rest={{ ...register("firstName") }}
+              rest={{ ...register("first_name") }}
               fieldType="text"
               label="First Name"
               placeholder="First Name"
             />
             <FormInput
-              rest={{ ...register("lastName") }}
+              rest={{ ...register("last_name") }}
               fieldType="text"
               label="Last Name"
               placeholder="Last Name"
             />
             <FormInput
               rest={{
-                ...register("group"),
+                ...register("group_id"),
               }}
               type="Select"
               options={options}
