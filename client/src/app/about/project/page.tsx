@@ -1,6 +1,10 @@
 // app/about/project/page.tsx
 export const dynamic = "force-dynamic";
 
+export const metadata = {
+  title: "Project",
+};
+
 const About = () => {
   return (
     <div className="p-8 bg-gray-100 min-h-screen">

@@ -3,7 +3,6 @@
 import GameMatch from "@/components/game/steps/bracket/GameMatch";
 import client from "@/directus/api";
 import { entities } from "@/lib/data";
-import { ITournament } from "@/lib/types";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import {
   setAdmin,
@@ -25,7 +24,6 @@ const Game = ({ params }: { params: { id: string } }) => {
 
   const isValidFinal = () => {
     const finalMatch = matches.find((match) => match.nextMatchId === null);
-
     if (finalMatch) {
       if (Object.keys(finalMatch.participants[0]).length !== 0) {
         if (Object.keys(finalMatch.participants[1]).length !== 0) {
@@ -62,7 +60,6 @@ const Game = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     fetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -75,7 +72,6 @@ const Game = ({ params }: { params: { id: string } }) => {
         >
           Back
         </Button>
-
         <Button
           disabled={isValid}
           className="justify-self-start"
