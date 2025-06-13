@@ -5,7 +5,7 @@ export default (router) => {
   router.get("/:id", async (req, res) => {
     try {
       const tournaments = await axios.get(
-        `http://diplom-production-04e4.up.railway.app/items/tournaments?filter[_and][0][admin_id][id][_eq]=${req.params.id}&fields[]=*.*`
+        `https://diplom-production-04e4.up.railway.app/items/tournaments?filter[_and][0][admin_id][id][_eq]=${req.params.id}&fields[]=*.*`
       );
       const data = [
         ["Tournament ID", "Name", "Game", "Date", "Location", "Admin"],
