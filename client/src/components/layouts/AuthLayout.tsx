@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { navigate } from "./redirect";
 
 interface IAuthLayout {
@@ -15,11 +16,16 @@ const AuthLayout = (props: IAuthLayout) => {
     access_token: string;
   };
 
-  if (pathname === "/dashboard") {
-    if (!access_token) {
+  useEffect(() => {
+    // Redirect to dashboard if user is logged in and on signin/signup pages
+    if (access_token && (pathname === "/signin" || pathname === "/signup")) {
+      router.push("/dashboard");
+    }
+    // Redirect to login if user is not logged in and on dashboard
+    if (pathname === "/dashboard" && !access_token) {
       navigate();
     }
-  }
+  }, [access_token, pathname, router]);
 
   return <>{props.children}</>;
 };
