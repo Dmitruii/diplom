@@ -29,22 +29,33 @@ const Final = ({ params }: { params: { id: string } }) => {
   const [selectedOption, setSelectedOption] = useState<any>(null);
 
   const updateWinner = async () => {
-    const data = await client.request(
-      updateItem(entities.tournaments, params.id, {
-        winner_id: {
-          create: [
-            {
-              tournaments_id: params.id,
-              collection: type,
-              item: { id: selectedOption.value },
+    try {
+      const data = await client.request(
+        updateItem(
+          entities.tournaments,
+          params.id,
+          {
+            winner_id: {
+              create: [
+                {
+                  tournaments_id: params.id,
+                  collection: type,
+                  item: { id: selectedOption.value },
+                },
+              ],
+              delete: tour.winner_id,
             },
-          ],
-          delete: tour.winner_id,
-        },
-      })
-    );
-    dispatch(setWiner(data));
-    dispatch(setIsModalOpen());
+          },
+          {
+            fields: ["*", "winner_id.*.*"],
+          }
+        )
+      );
+      dispatch(setWiner(data));
+      dispatch(setIsModalOpen());
+    } catch (error) {
+      console.error("Error updating winner:", error);
+    }
   };
 
   const fetchTour = async () => {

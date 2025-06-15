@@ -29,7 +29,12 @@ const FinalModal = ({ isModalOpen }: IFinalModal) => {
     >
       <div className="flex justify-center items-center">
         <Image src={"/final.svg"} alt="example" width={100} height={100} />
-        <h1 className="ml-2 text-2xl">Congratulations to {winner?.name}!</h1>
+        <h1 className="ml-2 text-2xl">
+          Congratulations to{" "}
+          {winner?.winner_id[0].item.first_name ||
+            winner?.winner_id[0].item.title}
+          !
+        </h1>
       </div>
       <Button
         className="mt-5 mx-auto"
