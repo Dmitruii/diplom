@@ -17,12 +17,17 @@ const GameMatchItem = ({ match, participants = [], index }: IGameMatchItem) => {
   const dispatch = useAppDispatch();
   const type = useAppSelector((state) => state.tournament.playersType);
 
+  // Filter out empty objects from participants
+  const validParticipants = participants.filter(
+    (participant) => participant && Object.keys(participant).length > 0
+  );
+
   const part = [
     {
       id: "",
       name: "Choose",
     },
-    ...participants,
+    ...validParticipants,
   ];
 
   const setPacticapantFunc = async (particapant: any) => {
@@ -54,10 +59,10 @@ const GameMatchItem = ({ match, participants = [], index }: IGameMatchItem) => {
     <>
       {user?.id === admin ? (
         <>
-          {match.participants[index].id ? (
+          {match.participants[index]?.id ? (
             <div className="w-full flex justify-between">
               <div>{match.participants[index]?.name}</div>
-              {match.tournamentRoundText != "1" && (
+              {match.tournamentRoundText !== "1" && (
                 <span
                   className="cursor-pointer"
                   onClick={() => setPacticapantFunc({})}
@@ -67,22 +72,23 @@ const GameMatchItem = ({ match, participants = [], index }: IGameMatchItem) => {
               )}
             </div>
           ) : (
-            <Select
-              className="w-full"
-              onChange={(e) =>
-                setPacticapantFunc(
-                  participants.find((part) => part.id == e.target.value)
-                )
-              }
-            >
-              {part.map((participant: any) => {
-                return (
+            // Only render Select if there are valid participants
+            validParticipants.length > 1 && (
+              <Select
+                className="w-full"
+                onChange={(e) =>
+                  setPacticapantFunc(
+                    validParticipants.find((part) => part.id === e.target.value)
+                  )
+                }
+              >
+                {part.map((participant: any) => (
                   <option key={participant.id} value={participant.id}>
                     {participant.name}
                   </option>
-                );
-              })}
-            </Select>
+                ))}
+              </Select>
+            )
           )}
         </>
       ) : (
